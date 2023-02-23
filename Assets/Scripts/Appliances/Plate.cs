@@ -199,7 +199,14 @@ namespace Undercooked.Appliances
                     }
                     break;
                 case Ingredient ingredient:
+                    if (ingredient.Type == IngredientType.Lettuce)
+                    {
+                    Debug.Log("[Plate] Lettuce not implemented");
+                    }
+                    else
+                    {
                     Debug.Log("[Plate] Trying to dropping Ingredient into Plate! Not implemented");
+                    }
                     break;
                 case Plate plate:
                     //Debug.Log("[Plate] Trying to drop something from a plate into other plate! We basically swap contents");
