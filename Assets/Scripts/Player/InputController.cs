@@ -7,6 +7,7 @@ namespace Undercooked.Player
 {
     public class InputController : MonoBehaviour
     {
+        private float fixedDeltaTime;
         public enum PlayerControllerIndex
         {
             None = 0,
@@ -43,10 +44,15 @@ namespace Undercooked.Player
             #if UNITY_EDITOR
             Assert.IsNotNull(playerInput);
             Assert.IsNotNull(playerController1);
-         //   Assert.IsNotNull(playerController2);
-            #endif
-        }
+            //   Assert.IsNotNull(playerController2);
+#endif
 
+            this.fixedDeltaTime = Time.fixedDeltaTime;
+        }
+        private void FixedUpdate()
+        {
+            Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
+        }
         internal void EnableFirstPlayerController()
         {
            // playerController2.DeactivatePlayer();
@@ -70,7 +76,7 @@ namespace Undercooked.Player
             _isFirstPlayerControllerActive = false;
             UnsubscribePlayerActions();
         }
-
+        /*
         private void TogglePlayerController()
         {
             if (_isFirstPlayerControllerActive)
@@ -81,7 +87,7 @@ namespace Undercooked.Player
             {
                 EnableFirstPlayerController();
             }
-        }
+        }*/
         
         private void OnEnable()
         {
@@ -117,7 +123,7 @@ namespace Undercooked.Player
             _switchAvatarAction = playerInput.currentActionMap["SwitchAvatar"];
             _startAtPlayerAction = playerInput.currentActionMap["Start@Player"];
             _startAtPlayerAction.performed += HandleStartAtPLayer;
-            _switchAvatarAction.performed += HandleSwitchAvatar; 
+            _switchAvatarAction.performed += HandleChangeSpeed; 
         }
 
         private void UnsubscribePlayerActions()
@@ -125,7 +131,7 @@ namespace Undercooked.Player
             if (_hasSubscribedPlayerActions == false) return;
             _hasSubscribedPlayerActions = false; 
             _startAtPlayerAction.performed -= HandleStartAtPLayer;
-            _switchAvatarAction.performed -= HandleSwitchAvatar;
+            _switchAvatarAction.performed -= HandleChangeSpeed;
         }
         
         private void SubscribeMenuActions()
@@ -154,9 +160,14 @@ namespace Undercooked.Player
             OnStartPressedAtMenu?.Invoke();
         }
 
-        private void HandleSwitchAvatar(InputAction.CallbackContext context)
+        private void HandleChangeSpeed(InputAction.CallbackContext context)
         {
-            TogglePlayerController();
+            //TogglePlayerController();
+            if (Time.timeScale == 1.0f)
+                Time.timeScale = 0.2f;
+            else
+                Time.timeScale = 1.0f;
+            Debug.Log("Change Speed to:" + Time.timeScale);
         }
 
         private void HandleControlsChanged(PlayerInput _playerInput)

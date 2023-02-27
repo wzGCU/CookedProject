@@ -11,7 +11,8 @@
                     "id": "cd2c0694-a29f-48ba-b7ce-370d883d50b7",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "PickUp",
@@ -19,7 +20,8 @@
                     "id": "f1de6946-c93a-4f7f-9aa4-897cae1ddc29",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Dash",
@@ -27,7 +29,8 @@
                     "id": "f882b1f8-6468-47ad-b04c-10afb3b11b87",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Interact",
@@ -35,7 +38,8 @@
                     "id": "3ede32fd-0595-4a9b-9a3f-742543520287",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Emote",
@@ -43,7 +47,8 @@
                     "id": "a6af25dc-9744-443e-8428-d7aeb4892164",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "SwitchAvatar",
@@ -51,7 +56,8 @@
                     "id": "634fb479-b2b2-459f-ae06-fb38627a5d01",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Start@Player",
@@ -59,7 +65,17 @@
                     "id": "f2030eab-c181-4e9d-8dda-caa1eb564bd2",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DEBUG_SwitchSpeed",
+                    "type": "Button",
+                    "id": "7289e2e0-e8d5-49f2-8feb-3fe08f2ce7b9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -231,7 +247,7 @@
                 {
                     "name": "",
                     "id": "6333bf62-10d4-4e49-9652-e6c24065614f",
-                    "path": "<Keyboard>/n",
+                    "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -337,6 +353,17 @@
                     "action": "Start@Player",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3f429758-ac58-4c25-a022-6c9646fb2ff0",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "DEBUG_SwitchSpeed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -350,7 +377,8 @@
                     "id": "9ef2136d-f68e-4581-941c-8bc12090cac1",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Submit",
@@ -358,7 +386,8 @@
                     "id": "673c3c5c-7f93-4b44-9a5c-0e16e74ee6bf",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Cancel",
@@ -366,7 +395,8 @@
                     "id": "1c23843e-fb7a-480f-8522-d5d1b92356d6",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Point",
@@ -374,7 +404,8 @@
                     "id": "959ad623-de78-4b43-aa3b-889a68eb840f",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Click",
@@ -382,7 +413,8 @@
                     "id": "5d412742-3b57-403e-9a12-eaf73bbfc13e",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "ScrollWheel",
@@ -390,7 +422,8 @@
                     "id": "e582f3f1-2c1e-496a-abf3-3f6ad7f9bddd",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "MiddleClick",
@@ -398,7 +431,8 @@
                     "id": "43925f4e-ffc8-4b92-b73b-30b5a4eef1e3",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "RightClick",
@@ -406,7 +440,8 @@
                     "id": "9ebb6033-f2fb-4a52-ae02-a694830b5542",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Start@Menu",
@@ -414,7 +449,8 @@
                     "id": "81bc6851-132a-4fdd-b708-db9f7d40f9ec",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
