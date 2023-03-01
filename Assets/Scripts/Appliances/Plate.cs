@@ -69,8 +69,10 @@ namespace Undercooked.Appliances
             DisableSoup();
         }
 
-        public bool AddChoopedIngredient(List<Ingredient> ingredients)
-        {
+        public bool AddChoopedIngredient(IPickable pickable)
+        {/*
+            //List<Ingredient> ingredients;
+            var ingredient = pickable as Ingredient;
             // check for soup (3 equal cooked ingredients, mushroom, onion or tomato)
             if (!IsEmpty()) return false;
             _ingredients.AddRange(ingredients);
@@ -86,7 +88,7 @@ namespace Undercooked.Appliances
             {
                 EnableSoup(ingredients[0]);
             }
-            // not a soup
+            // not a soup*/
             return true;
         }
 
@@ -105,7 +107,21 @@ namespace Undercooked.Appliances
 
             if (CheckSoupIngredients(ingredients))
             {
-                EnableSoup(ingredients[0]);
+                
+                if (ingredients[0].Type == IngredientType.Lettuce) {
+                    EnableSoup(ingredients[0]);
+                }
+                else if (ingredients[1].Type == IngredientType.Lettuce) {
+                    EnableSoup(ingredients[1]);
+                }
+                else if (ingredients[2].Type == IngredientType.Lettuce)
+                {
+                    EnableSoup(ingredients[2]);
+                }
+                else
+                {
+                    EnableSoup(ingredients[0]);
+                }
             }
             // not a soup
             return true;
@@ -219,14 +235,14 @@ namespace Undercooked.Appliances
                     }
                     break;
                 case Ingredient ingredient:
-                    if (ingredient.Type == IngredientType.Lettuce)
+                    if (ingredient.Type == IngredientType.Lettuce || ingredient.Type == IngredientType.Tomato)
                     {
                         if (ingredient.Status != IngredientStatus.Processed)
                         {
-                            Debug.Log("[Plate] Lettuce must be chopped");
+                            Debug.Log("[Plate] Lettuce and tomato must be chopped");
                             return false;
                         }
-                        return TryDrop(pickableToDrop);
+                        return AddChoopedIngredient(pickableToDrop);
                     }
                     else
                     {

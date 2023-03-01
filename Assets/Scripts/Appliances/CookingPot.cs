@@ -121,7 +121,7 @@ namespace Undercooked.Appliances
                     }
                     if (ingredient.Type == IngredientType.Onion ||
                         ingredient.Type == IngredientType.Tomato ||
-                        ingredient.Type == IngredientType.Mushroom)
+                        ingredient.Type == IngredientType.Lettuce)
                     {
                         return TryDrop(pickableToDrop);    
                     }
