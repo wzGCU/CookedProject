@@ -69,7 +69,7 @@ namespace Undercooked.Appliances
             DisableSoup();
         }
 
-        public bool AddIngredients(List<Ingredient> ingredients)
+        public bool AddChoopedIngredient(List<Ingredient> ingredients)
         {
             // check for soup (3 equal cooked ingredients, mushroom, onion or tomato)
             if (!IsEmpty()) return false;
@@ -89,7 +89,27 @@ namespace Undercooked.Appliances
             // not a soup
             return true;
         }
-        
+
+        public bool AddIngredients(List<Ingredient> ingredients)
+        {
+            // check for soup (3 equal cooked ingredients, mushroom, onion or tomato)
+            if (!IsEmpty()) return false;
+            _ingredients.AddRange(ingredients);
+
+            foreach (var ingredient in _ingredients)
+            {
+                ingredient.transform.SetParent(Slot);
+                ingredient.transform.SetPositionAndRotation(Slot.transform.position, Quaternion.identity);
+            }
+            UpdateIconsUI();
+
+            if (CheckSoupIngredients(ingredients))
+            {
+                EnableSoup(ingredients[0]);
+            }
+            // not a soup
+            return true;
+        }
         public void RemoveAllIngredients()
         {
             DisableSoup();
@@ -114,7 +134,7 @@ namespace Undercooked.Appliances
         }
         
         /// <summary>
-        /// Check for exactly 3 equals ingredients, being onions, tomatos or mushrooms.
+        /// Check for exactly 3 equals ingredients, being onions, tomatos or lettuce.
         /// </summary>
         public static bool CheckSoupIngredients(IReadOnlyList<Ingredient> ingredients)
         {
@@ -125,12 +145,12 @@ namespace Undercooked.Appliances
 
             if (ingredients[0].Type != IngredientType.Onion &&
                 ingredients[0].Type != IngredientType.Tomato &&
-                ingredients[0].Type != IngredientType.Mushroom)
+                ingredients[0].Type != IngredientType.Lettuce)
             {
-                Debug.Log("[Plate] Soup only must contain onion, tomato or mushroom");
+                Debug.Log("[Plate] Soup only must contain onion, tomato or lettuce");
                 return false;
             }
-            
+            /*
             if (ingredients[0].Type != ingredients[1].Type ||
                 ingredients[1].Type != ingredients[2].Type ||
                 ingredients[0].Type != ingredients[2].Type)
@@ -138,7 +158,7 @@ namespace Undercooked.Appliances
                 Debug.Log("[Plate] Soup with mixed ingredients! You must thrash it away! What a waste!");
                 return false;
             }
-            
+            */
             return true;
         }
         
@@ -201,11 +221,16 @@ namespace Undercooked.Appliances
                 case Ingredient ingredient:
                     if (ingredient.Type == IngredientType.Lettuce)
                     {
-                    Debug.Log("[Plate] Lettuce not implemented");
+                        if (ingredient.Status != IngredientStatus.Processed)
+                        {
+                            Debug.Log("[Plate] Lettuce must be chopped");
+                            return false;
+                        }
+                        return TryDrop(pickableToDrop);
                     }
                     else
                     {
-                    Debug.Log("[Plate] Trying to dropping Ingredient into Plate! Not implemented");
+                        Debug.Log("[Plate] Trying to dropping Ingredient into Plate! Not implemented");
                     }
                     break;
                 case Plate plate:

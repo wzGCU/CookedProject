@@ -68,6 +68,9 @@ namespace Undercooked.Appliances
         // if there is a mixed soup (e.g. 2x onions 1x tomato) we can't pickup the soup (it's locked),
         // the only option is to trash it
         // we only deliver single ingredient soups
+
+        // [Modified]
+        // I want multiple veggies soup so I modify it <3 <3 <3
         
         protected override void Awake()
         {
@@ -163,7 +166,7 @@ namespace Undercooked.Appliances
         {
             // we can only pick a soup when it's ready and Player has a Plate in hands, otherwise refuse
             if (!IsCookFinished || IsBurned) return null;
-            
+            /*
             // we "lock" a soup if there are different ingredients. Player has to trash it away
             if (Ingredients[0].Type != Ingredients[1].Type ||
                 Ingredients[1].Type != Ingredients[2].Type ||
@@ -172,7 +175,7 @@ namespace Undercooked.Appliances
                 // Debug.Log("[CookingPot] Soup with mixed ingredients! You must thrash it away! What a waste!");
                 return null;
             }
-
+            */
             if (!(playerHoldPickable is Plate plate)) return null;
             if (!plate.IsClean || !plate.IsEmpty()) return null;
             
