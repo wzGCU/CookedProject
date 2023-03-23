@@ -1,5 +1,6 @@
 using Undercooked.Data;
 using UnityEngine;
+using Undercooked;
 
 namespace Undercooked.Model
 {
@@ -13,6 +14,7 @@ namespace Undercooked.Model
         private Collider _collider;
         private MeshRenderer _meshRenderer;
         private MeshFilter _meshFilter;
+        private AccessibilityManager abltManager;
 
         public IngredientStatus Status { get; private set; }
         public IngredientType Type => data.type;
@@ -32,6 +34,7 @@ namespace Undercooked.Model
             _meshFilter = GetComponent<MeshFilter>();
             _rigidbody = GetComponent<Rigidbody>();
             _collider = GetComponent<Collider>();
+            abltManager = GameObject.FindGameObjectWithTag("AccessibilityManager").GetComponent<AccessibilityManager>();
             Setup();
         }
 
@@ -56,6 +59,7 @@ namespace Undercooked.Model
         {
             _rigidbody.isKinematic = true;
             _collider.enabled = false;
+            
         }
         
         public void Drop()
@@ -63,6 +67,7 @@ namespace Undercooked.Model
             gameObject.transform.SetParent(null);
             _rigidbody.isKinematic = false;
             _collider.enabled = true;
+            
         }
         
         public void ChangeToProcessed()
@@ -95,7 +100,7 @@ namespace Undercooked.Model
 
         public override IPickable TryToPickUpFromSlot(IPickable playerHoldPickable)
         {
-            // Debug.Log($"[Ingredient] Trying to PickUp {gameObject.name}");
+             Debug.Log($"[Ingredient] Trying to PickUp {gameObject.name}");
             _rigidbody.isKinematic = true;
             return this;
         }

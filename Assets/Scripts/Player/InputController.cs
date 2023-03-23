@@ -2,12 +2,15 @@ using System;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
+using Undercooked;
 
 namespace Undercooked.Player
 {
     public class InputController : MonoBehaviour
     {
-        private float fixedDeltaTime;
+        
+        private AccessibilityManager abltManager;
+
         public enum PlayerControllerIndex
         {
             None = 0,
@@ -39,6 +42,7 @@ namespace Undercooked.Player
         public StartPressed OnStartPressedAtMenu;
         public StartPressed OnStartPressedAtPlayer;
 
+
         private void Awake()
         {
             #if UNITY_EDITOR
@@ -46,13 +50,9 @@ namespace Undercooked.Player
             Assert.IsNotNull(playerController1);
             //   Assert.IsNotNull(playerController2);
 #endif
-
-            this.fixedDeltaTime = Time.fixedDeltaTime;
+            abltManager = GameObject.FindGameObjectWithTag("AccessibilityManager").GetComponent<AccessibilityManager>();
         }
-        private void FixedUpdate()
-        {
-            Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
-        }
+        
         internal void EnableFirstPlayerController()
         {
            // playerController2.DeactivatePlayer();
@@ -162,12 +162,9 @@ namespace Undercooked.Player
 
         private void HandleChangeSpeed(InputAction.CallbackContext context)
         {
+            abltManager.ChangeSpeed();
             //TogglePlayerController();
-            if (Time.timeScale == 1.0f)
-                Time.timeScale = 0.2f;
-            else
-                Time.timeScale = 1.0f;
-            Debug.Log("Change Speed to:" + Time.timeScale);
+            
         }
 
         private void HandleControlsChanged(PlayerInput _playerInput)

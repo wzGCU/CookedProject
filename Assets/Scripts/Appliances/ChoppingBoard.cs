@@ -9,6 +9,7 @@ namespace Undercooked.Appliances
 {
     public class ChoppingBoard : Interactable
     {
+        private AccessibilityManager abltManager; 
         [SerializeField] private Transform knife;
         [SerializeField] private Slider slider;
         
@@ -31,6 +32,7 @@ namespace Undercooked.Appliances
             
             base.Awake();
             slider.gameObject.SetActive(false);
+            abltManager = GameObject.FindGameObjectWithTag("AccessibilityManager").GetComponent<AccessibilityManager>();
         }
 
         public override void Interact(PlayerController playerController)
@@ -112,9 +114,16 @@ namespace Undercooked.Appliances
             var output = CurrentPickable;
             _ingredient = null;
             var interactable = CurrentPickable as Interactable;
+            Ingredient outputIngredient = CurrentPickable as Ingredient;
             interactable?.ToggleHighlightOff();
             CurrentPickable = null;
+            if (outputIngredient != null)
+            {
+                abltManager.HandleIngredient(outputIngredient);
+                abltManager.EnableHighlightCounters();
+            }
             knife.gameObject.SetActive(true);
+            
             return output;
         }
         
@@ -131,6 +140,11 @@ namespace Undercooked.Appliances
             CurrentPickable.gameObject.transform.SetPositionAndRotation(Slot.position, Quaternion.identity);
             knife.gameObject.SetActive(false);
             return true;
+        }
+        public bool IsBusy()
+        {
+            if (CurrentPickable == null) return false;
+            else return true;
         }
     }
 }

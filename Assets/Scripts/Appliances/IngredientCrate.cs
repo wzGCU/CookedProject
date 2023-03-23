@@ -10,13 +10,17 @@ namespace Undercooked.Appliances
         private Animator _animator;
         private static readonly int OpenHash = Animator.StringToHash("Open");
 
+        private AccessibilityManager abltManager;
+
         protected override void Awake()
         {
             base.Awake();
             _animator = GetComponentInChildren<Animator>();
-            
-            #if UNITY_EDITOR
-                Assert.IsNotNull(ingredientPrefab);
+            abltManager = GameObject.FindGameObjectWithTag("AccessibilityManager").GetComponent<AccessibilityManager>();
+
+
+#if UNITY_EDITOR
+            Assert.IsNotNull(ingredientPrefab);
                 Assert.IsNotNull(_animator);
             #endif
         }
@@ -28,6 +32,7 @@ namespace Undercooked.Appliances
             CurrentPickable = pickableToDrop;
             CurrentPickable.gameObject.transform.SetParent(Slot);
             pickableToDrop.gameObject.transform.SetPositionAndRotation(Slot.position, Quaternion.identity);
+            abltManager.DisableHighlightCounters();
             return true;
         }
 
@@ -36,13 +41,25 @@ namespace Undercooked.Appliances
             if (CurrentPickable == null)
             {
                 _animator.SetTrigger(OpenHash);
+                Debug.Log("this happens when u piuck up");
+                abltManager.SwitchHighlightCuttingBoard(true);
+                abltManager.EnableHighlightCounters();
                 return Instantiate(ingredientPrefab, Slot.transform.position, Quaternion.identity);
             }
 
             var output = CurrentPickable;
             var interactable = CurrentPickable as Interactable;
+            Ingredient outputIngredient = CurrentPickable as Ingredient;
+            
             interactable?.ToggleHighlightOff();
             CurrentPickable = null;
+            if (outputIngredient != null)
+            {
+                abltManager.HandleIngredient(outputIngredient);
+                abltManager.EnableHighlightCounters();
+            }
+            //when u pick object from stove
+
             return output;
         }
     }
