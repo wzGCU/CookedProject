@@ -10,22 +10,26 @@ namespace Undercooked
     
     public class AccessibilityManager : MonoBehaviour
     {
-        //Game Speed
+        
         private float fixedDeltaTime;
+        [Header("Game Speed")]
         public bool isSlomo = true;
         public float gameSpeed = 0.75f;
+
         private GameObject[] cuttingBoards;
 
-        public Material originalCounterMat, darkCounterMat, originalCuttingMat, darkCuttingMat;
-
-        public bool isShortDistanceWalls = true;
-        public bool isShortDistanceCounters = true;
-        
-
-
-
+        [Header("Materials for Highlights")]
         //Highlight Interactables
         public bool EnableInteractableHighlightsWhenHeld = true;
+        [SerializeField] private Material originalCounterMat, 
+            darkCounterMat, 
+            originalCuttingMat, 
+            darkCuttingMat;
+
+        [Header("Variables for seeing when walls are on/off")]
+        public bool isShortDistanceWalls = true;
+        public bool isShortDistanceCounters = true;
+
 
         private void Awake()
         {
@@ -81,7 +85,7 @@ namespace Undercooked
             {
                 foreach (GameObject cuttingPrefab in cuttingBoards)
                 {
-                    if (!cuttingPrefab.GetComponent<ChoppingBoard>().IsBusy())
+                    if (cuttingPrefab.transform.GetChild(0).childCount!=0)
                     {
                         cuttingPrefab.GetComponent<Renderer>().material = darkCounterMat;
                         cuttingPrefab.transform.GetChild(1).GetComponent<Renderer>().material = darkCuttingMat;
@@ -169,6 +173,7 @@ namespace Undercooked
 
         public void DisableAllButCrates()
         {
+
 
         }
        
