@@ -209,6 +209,7 @@ namespace Undercooked.Player
                     _currentPickable.gameObject.transform.SetPositionAndRotation(slot.transform.position,
                         Quaternion.identity);
                     _currentPickable.gameObject.transform.SetParent(slot);
+                    abltManager.EnableHighlightCounters();
                     abltManager.EnableHighlightTrash();
                     return;
                 }
@@ -218,6 +219,7 @@ namespace Undercooked.Player
                 if (_currentPickable != null)
                 {
                     animator.SetBool(_hasPickupHash, true);
+                    abltManager.EnableHighlightCounters();
                     abltManager.EnableHighlightTrash();
                     this.PlaySoundTransition(pickupAudio);
                 }
@@ -236,6 +238,7 @@ namespace Undercooked.Player
                 animator.SetBool(_hasPickupHash, false);
                 this.PlaySoundTransition(dropAudio);
                 _currentPickable.Drop();
+                abltManager.DisableHighlightCounters();
                 abltManager.DisableHighlightTrash();
                 _currentPickable = null;
                 
@@ -255,6 +258,7 @@ namespace Undercooked.Player
             animator.SetBool(_hasPickupHash, false);
             this.PlaySoundTransition(dropAudio);
             abltManager.DisableHighlightTrash();
+            abltManager.DisableHighlightCounters();
             _currentPickable = null;
         }
 

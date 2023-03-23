@@ -32,7 +32,15 @@ namespace Undercooked
                 {
                     if(transform.GetChild(0).childCount != 0)
                     {
-                        LightTextures();
+                        if(transform.GetChild(0).transform.GetChild(0).name!="Plate1"
+                            && transform.GetChild(0).transform.GetChild(0).name != "Plate2" 
+                            && transform.GetChild(0).transform.GetChild(0).name != "Plate3"
+                            )
+                        {
+                            LightTextures();
+                        }
+                        else if (abltManager.platesEnabled) { LightTextures(); }
+                        
                     }
                     else
                     {
@@ -65,12 +73,12 @@ namespace Undercooked
         void ChangeTextures()
         {
             float distance = Vector3.Distance(transform.position, playerObject.transform.position);
-            if ((distance < distanceRequired) && darkTexture)
+            if ((distance < distanceRequired-1) && darkTexture)
             {
                 LightTextures();
             }
 
-            if ((distance > distanceRequired) && lightTexture)
+            if ((distance > distanceRequired-1) && lightTexture)
             {
                 DarkTextures();
             }

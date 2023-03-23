@@ -90,6 +90,7 @@ namespace Undercooked.Appliances
 
             // finished
             _ingredient.ChangeToProcessed();
+            abltManager.DisableHighlightCuttingBoards();
             slider.gameObject.SetActive(false);
             _isChopping = false;
             _chopCoroutine = null;

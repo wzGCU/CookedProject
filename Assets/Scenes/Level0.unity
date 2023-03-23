@@ -1194,7 +1194,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 232159354}
   m_LocalRotation: {x: 0.5, y: -0, z: -0, w: 0.8660254}
-  m_LocalPosition: {x: -0.00000023841858, y: 5.330127, z: -4.21}
+  m_LocalPosition: {x: -0.00000011920929, y: 5.330127, z: -4.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2014,6 +2014,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 270442da6c0c482499e7b226ee0ef71b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  platesEnabled: 0
   isSlomo: 1
   gameSpeed: 0.75
   EnableInteractableHighlightsWhenHeld: 1
@@ -2036,7 +2037,7 @@ MonoBehaviour:
   trash: {fileID: 1323394169}
   deliverCounter: {fileID: 1452963923}
   sink: {fileID: 1181446345}
-  slowedText: {fileID: 0}
+  slowedText: {fileID: 160403679}
   isShortDistanceWalls: 0
   isShortDistanceCounters: 0
 --- !u!1001 &482722601
@@ -3347,7 +3348,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5771257367067148217, guid: 15610d07a6d486c4aa4e74bd00501f4b, type: 3}
       propertyPath: m_Name
-      value: Plate_1
+      value: Plate1
       objectReference: {fileID: 0}
     - target: {fileID: 5771257367067148217, guid: 15610d07a6d486c4aa4e74bd00501f4b, type: 3}
       propertyPath: m_TagString
@@ -4654,7 +4655,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5771257367067148217, guid: 15610d07a6d486c4aa4e74bd00501f4b, type: 3}
       propertyPath: m_Name
-      value: Plate_3
+      value: Plate3
       objectReference: {fileID: 0}
     - target: {fileID: 8895327907303998877, guid: 15610d07a6d486c4aa4e74bd00501f4b, type: 3}
       propertyPath: m_TagString
@@ -8593,6 +8594,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1461891f30ae9645a6f65d25bb5db2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1699711815
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1699711816}
+  m_Layer: 0
+  m_Name: SlotNorification
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1699711816
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699711815}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.7, y: 1.01, z: -2.56}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2006660624}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1718026668
 Mesh:
   m_ObjectHideFlags: 0
@@ -9581,7 +9613,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5771257367067148217, guid: 15610d07a6d486c4aa4e74bd00501f4b, type: 3}
       propertyPath: m_Name
-      value: Plate_2
+      value: Plate2
       objectReference: {fileID: 0}
     - target: {fileID: 8895327907303998877, guid: 15610d07a6d486c4aa4e74bd00501f4b, type: 3}
       propertyPath: m_TagString
@@ -10608,6 +10640,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1699711816}
   - {fileID: 794793583}
   - {fileID: 1492098561}
   - {fileID: 298180229}
@@ -11420,6 +11453,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 729860399}
     m_Modifications:
+    - target: {fileID: 962329283, guid: 849d5e5e71be2d74d901419aaa2bb7c4, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1699711816}
     - target: {fileID: 2597145663918102040, guid: 849d5e5e71be2d74d901419aaa2bb7c4, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -12302,11 +12339,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6990405457037456965, guid: af82868860f0ab941a01ac1d2209301c, type: 3}
       propertyPath: m_Alpha
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6990405457037456969, guid: af82868860f0ab941a01ac1d2209301c, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6990405457037456971, guid: af82868860f0ab941a01ac1d2209301c, type: 3}
       propertyPath: m_Enabled

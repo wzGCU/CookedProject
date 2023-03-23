@@ -10,7 +10,8 @@ namespace Undercooked
     
     public class AccessibilityManager : MonoBehaviour
     {
-        
+
+        public bool platesEnabled;
         private float fixedDeltaTime;
         [Header("Game Speed")]
         public bool isSlomo = true;
@@ -58,6 +59,7 @@ namespace Undercooked
             this.fixedDeltaTime = Time.fixedDeltaTime;
             cuttingBoards = GameObject.FindGameObjectsWithTag("CuttingBoards");
             DisableAllButTaken();
+            DisableHighlightPlates();
             
         }
         private void FixedUpdate()
@@ -69,8 +71,10 @@ namespace Undercooked
 
             if (Time.timeScale == 1.0f)
             {
-                Time.timeScale = gameSpeed;
+                Debug.Log(slowedText.name);
                 slowedText.SetActive(true);
+                Time.timeScale = gameSpeed;
+                
             }
             else
                 Time.timeScale = 1.0f;
@@ -80,21 +84,24 @@ namespace Undercooked
 
          public void HandleIngredient(Ingredient data)
             {
+            EnableHighlightCounters();
             EnableHighlightTrash();
+            
 
             if (data.Status == IngredientStatus.Raw)
                 {
                     EnableHighlightCuttingBoard();
                     DisableHighlightCooking();
+                Debug.Log("idk why but raw");
                     DisableHighlightPlates();
+                    DisableHighlightCooking();
 
                 }
                 if (data.Status == IngredientStatus.Processed)
                 {
                     DisableHighlightCuttingBoards();
                     EnableHighlightCooking();
-                if (data.Type == IngredientType.Lettuce) EnableHighlightPlates();
-                else DisableHighlightPlates();
+                
 
                 }
                 if (data.Status == IngredientStatus.Cooked)
@@ -218,11 +225,14 @@ namespace Undercooked
         {
             if (EnableInteractableHighlightsWhenHeld)
             {
+                platesEnabled = true;
                 plates = GameObject.FindGameObjectsWithTag("CleanPlates");
                 foreach (GameObject platePrefab in plates)
                 {
                     platePrefab.GetComponent<Renderer>().material = originalPlate;
                 }
+                EnableHighlightCounters();
+                DisableHighlightCounters();
             }
 
         }
@@ -230,6 +240,9 @@ namespace Undercooked
         {
             if (EnableInteractableHighlightsWhenHeld)
             {
+                platesEnabled = false;
+                EnableHighlightCounters();
+                DisableHighlightCounters();
                 plates = GameObject.FindGameObjectsWithTag("CleanPlates");
                 foreach (GameObject platePrefab in plates)
                 {
@@ -238,6 +251,7 @@ namespace Undercooked
                         platePrefab.GetComponent<Renderer>().material = darkPlate;
                         
                     }
+                    
 
 
                 }
@@ -292,7 +306,7 @@ namespace Undercooked
         {
             DisableHighlightCuttingBoards();
             DisableHighlightCounters();
-            DisableHighlightPlates();
+            
             DisableHighlightCooking();
             DisableHighlightSink();
             DisableHighlightTrash();

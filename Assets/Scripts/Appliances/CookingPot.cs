@@ -238,6 +238,7 @@ namespace Undercooked.Appliances
             // after cook, we burn
             if (IsCookFinished)
             {
+                abltManager.EnableHighlightPlates();
                 _burnCoroutine = StartCoroutine(Burn());
                 return;
             }
@@ -381,6 +382,7 @@ namespace Undercooked.Appliances
             // FX's
             warningPopup.enabled = false;
             IsBurned = true;
+            abltManager.DisableHighlightPlates();
             _inBurnProcess = false;
             _currentBurnTime = 0f;
             
@@ -413,6 +415,7 @@ namespace Undercooked.Appliances
        
         private void TriggerSuccessfulCook()
         {
+            abltManager.EnableHighlightPlates();
             IsCookFinished = true;
             _currentCookTime = 0f;
             _burnCoroutine = StartCoroutine(Burn());
@@ -444,9 +447,11 @@ namespace Undercooked.Appliances
             
             Ingredients.Add(ingredient);
             
+            
             _totalCookTime += ingredient.CookTime;
             
             SetLiquidLevelAndColor();
+            abltManager.DisableHighlightCounters();
 
             // hide ingredient mesh
             ingredient.SetMeshRendererEnabled(false);

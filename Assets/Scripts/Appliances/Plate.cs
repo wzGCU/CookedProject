@@ -162,6 +162,8 @@ namespace Undercooked.Appliances
             _soupMaterial.color = ingredientSample.BaseColor;
           abltManager.EnableHighlghtFoodCounter();
           transform.GetChild(0).gameObject.tag = "FullPlates";
+            abltManager.DisableHighlightPlates();
+            abltManager.DisableHighlightCooking();
         }
 
         private void DisableSoup()

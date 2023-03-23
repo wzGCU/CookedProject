@@ -70,7 +70,7 @@ namespace Undercooked.UI
                 Assert.IsNotNull(resumeButton_Pause);
                 Assert.IsNotNull(restartButton_Pause);
                 Assert.IsNotNull(quitButton_Pause);
-                Assert.IsNotNull(restartButton_GameOver);
+                //Assert.IsNotNull(restartButton_GameOver);
                 Assert.IsNotNull(quitButton_GameOver);
                 
                 Assert.IsNotNull(star1);
@@ -105,7 +105,7 @@ namespace Undercooked.UI
             resumeButton_Pause.onClick.AddListener(HandleResumeButton);
             restartButton_Pause.onClick.AddListener(HandleRestartButton);
             quitButton_Pause.onClick.AddListener(HandleQuitButton);
-            restartButton_GameOver.onClick.AddListener(HandleRestartButton);
+            //restartButton_GameOver.onClick.AddListener(HandleRestartButton);
             quitButton_GameOver.onClick.AddListener(HandleQuitButton);
         }
 
@@ -114,7 +114,7 @@ namespace Undercooked.UI
             resumeButton_Pause.onClick.RemoveAllListeners();
             restartButton_Pause.onClick.RemoveAllListeners();
             quitButton_Pause.onClick.RemoveAllListeners();
-            restartButton_GameOver.onClick.RemoveAllListeners();
+            //restartButton_GameOver.onClick.RemoveAllListeners();
             quitButton_GameOver.onClick.RemoveAllListeners();
         }
 
