@@ -69,28 +69,6 @@ namespace Undercooked.Appliances
             DisableSoup();
         }
 
-        public bool AddChoopedIngredient(IPickable pickable)
-        {/*
-            //List<Ingredient> ingredients;
-            var ingredient = pickable as Ingredient;
-            // check for soup (3 equal cooked ingredients, mushroom, onion or tomato)
-            if (!IsEmpty()) return false;
-            _ingredients.AddRange(ingredients);
-            
-            foreach (var ingredient in _ingredients)
-            {
-                ingredient.transform.SetParent(Slot);
-                ingredient.transform.SetPositionAndRotation(Slot.transform.position, Quaternion.identity);
-            }
-            UpdateIconsUI();
-            
-            if (CheckSoupIngredients(ingredients))
-            {
-                EnableSoup(ingredients[0]);
-            }
-            // not a soup*/
-            return true;
-        }
 
         public bool AddIngredients(List<Ingredient> ingredients)
         {
@@ -242,20 +220,8 @@ namespace Undercooked.Appliances
                     }
                     break;
                 case Ingredient ingredient:
-                    if (ingredient.Type == IngredientType.Lettuce || ingredient.Type == IngredientType.Tomato)
-                    {
-                        if (ingredient.Status != IngredientStatus.Processed)
-                        {
-                            Debug.Log("[Plate] Lettuce and tomato must be chopped");
-                            return false;
-                        }
-                        return AddChoopedIngredient(pickableToDrop);
-                    }
-                    else
-                    {
-                        Debug.Log("[Plate] Trying to dropping Ingredient into Plate! Not implemented");
-                    }
-                    break;
+                     Debug.Log("[Plate] Trying to dropping Ingredient into Plate! Not implemented");
+                     break;
                 case Plate plate:
                     //Debug.Log("[Plate] Trying to drop something from a plate into other plate! We basically swap contents");
                     if (this.IsEmpty() == false || this.IsClean == false) return false;
