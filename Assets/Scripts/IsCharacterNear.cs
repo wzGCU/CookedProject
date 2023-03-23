@@ -30,14 +30,22 @@ namespace Undercooked
             {
                 if (isStove)
                 {
-                    if (abltManager.isShortDistanceCounters)
+                    if(transform.GetChild(0).childCount != 0)
                     {
-                        ChangeTextures();
+                        LightTextures();
                     }
                     else
                     {
-                        DarkTextures();
+                        if (abltManager.isShortDistanceCounters)
+                        {
+                            ChangeTextures();
+                        }
+                        else
+                        {
+                            DarkTextures();
+                        }
                     }
+                    
                 }
                 else
                 {

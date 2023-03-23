@@ -14,7 +14,7 @@ namespace Undercooked.Model
         private Collider _collider;
         private MeshRenderer _meshRenderer;
         private MeshFilter _meshFilter;
-        private AccessibilityManager abltManager;
+        //private AccessibilityManager abltManager;
 
         public IngredientStatus Status { get; private set; }
         public IngredientType Type => data.type;
@@ -34,7 +34,7 @@ namespace Undercooked.Model
             _meshFilter = GetComponent<MeshFilter>();
             _rigidbody = GetComponent<Rigidbody>();
             _collider = GetComponent<Collider>();
-            abltManager = GameObject.FindGameObjectWithTag("AccessibilityManager").GetComponent<AccessibilityManager>();
+            //abltManager = GameObject.FindGameObjectWithTag("AccessibilityManager").GetComponent<AccessibilityManager>();
             Setup();
         }
 
@@ -74,6 +74,7 @@ namespace Undercooked.Model
         {
             Status = IngredientStatus.Processed;
             _meshFilter.mesh = data.processedMesh;
+            
         }
 
         public void ChangeToCooked()

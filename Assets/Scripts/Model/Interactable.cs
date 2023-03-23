@@ -15,6 +15,7 @@ namespace Undercooked.Model
         [Tooltip("Pivot where IPickables could be dropped/pickedUp")]
         [SerializeField] protected Transform slot;
 
+        protected AccessibilityManager abltManager;
         protected IPickable CurrentPickable { get; set; }
         protected PlayerController LastPlayerControllerInteracting;
         private readonly List<MeshRenderer> _meshes = new List<MeshRenderer>();
@@ -29,6 +30,7 @@ namespace Undercooked.Model
 
             CacheMeshRenderers();
             CheckSlotOccupied();
+            abltManager = GameObject.FindGameObjectWithTag("AccessibilityManager").GetComponent<AccessibilityManager>();
         }
 
         private void CacheMeshRenderers()

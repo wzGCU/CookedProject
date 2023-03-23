@@ -5,12 +5,9 @@ namespace Undercooked.Appliances
 {
     public class Countertop : Interactable
     {
-        private AccessibilityManager abltManager;
+        
 
-        public void Start()
-        {
-            abltManager = GameObject.FindGameObjectWithTag("AccessibilityManager").GetComponent<AccessibilityManager>();
-        }
+        
         public override bool TryToDropIntoSlot(IPickable pickableToDrop)
         {
             if (CurrentPickable == null) return TryDropIfNotOccupied(pickableToDrop);
@@ -48,7 +45,7 @@ namespace Undercooked.Appliances
             CurrentPickable = pickable;
             CurrentPickable.gameObject.transform.SetParent(Slot);
             CurrentPickable.gameObject.transform.SetPositionAndRotation(Slot.position, Quaternion.identity);
-            abltManager.DisableHighlightCounters();
+            abltManager.DisableAllButTaken();
             return true;
         }
     }

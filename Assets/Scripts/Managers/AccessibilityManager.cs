@@ -24,7 +24,17 @@ namespace Undercooked
         [SerializeField] private Material originalCounterMat, 
             darkCounterMat, 
             originalCuttingMat, 
-            darkCuttingMat;
+            darkCuttingMat,
+            originalPot,
+            darkPot,
+            originalTrash,
+            darkTrash,
+            originalSink,
+            darkSink,
+            originalFoodGiver,
+            darkFoodGiver,
+            originalPlate,
+            darkPlate;
 
         [Header("Variables for seeing when walls are on/off")]
         public bool isShortDistanceWalls = true;
@@ -79,13 +89,13 @@ namespace Undercooked
             }
                 
         }
-        void DisableHighlightCuttingBoards()
+        public void DisableHighlightCuttingBoards()
         {
             if (EnableInteractableHighlightsWhenHeld)
             {
                 foreach (GameObject cuttingPrefab in cuttingBoards)
                 {
-                    if (cuttingPrefab.transform.GetChild(0).childCount!=0)
+                    if (cuttingPrefab.transform.GetChild(0).childCount==0)
                     {
                         cuttingPrefab.GetComponent<Renderer>().material = darkCounterMat;
                         cuttingPrefab.transform.GetChild(1).GetComponent<Renderer>().material = darkCuttingMat;
@@ -154,7 +164,7 @@ namespace Undercooked
                 DisableHighlightPlate();
 
             }
-            if (data.Status==IngredientStatus.Processed)
+            if (data.Status == IngredientStatus.Processed)
             {
                 DisableHighlightCuttingBoards();
                 EnableHighlightCooking();
@@ -171,9 +181,10 @@ namespace Undercooked
             
         }
 
-        public void DisableAllButCrates()
+        public void DisableAllButTaken()
         {
-
+            DisableHighlightCuttingBoards();
+            DisableHighlightCounters();
 
         }
        

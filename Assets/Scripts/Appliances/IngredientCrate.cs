@@ -10,14 +10,13 @@ namespace Undercooked.Appliances
         private Animator _animator;
         private static readonly int OpenHash = Animator.StringToHash("Open");
 
-        private AccessibilityManager abltManager;
+        
 
         protected override void Awake()
         {
             base.Awake();
             _animator = GetComponentInChildren<Animator>();
-            abltManager = GameObject.FindGameObjectWithTag("AccessibilityManager").GetComponent<AccessibilityManager>();
-
+           
 
 #if UNITY_EDITOR
             Assert.IsNotNull(ingredientPrefab);
