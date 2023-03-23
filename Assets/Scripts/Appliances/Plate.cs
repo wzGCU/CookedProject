@@ -182,11 +182,14 @@ namespace Undercooked.Appliances
         {
             soup.gameObject.SetActive(true); 
             _soupMaterial.color = ingredientSample.BaseColor;
+          abltManager.EnableHighlghtFoodCounter();
+          transform.GetChild(0).gameObject.tag = "FullPlates";
         }
 
         private void DisableSoup()
         {
             soup.gameObject.SetActive(false);
+            abltManager.DisableHighlghtFoodCounter();
         }
 
         [ContextMenu("SetClean")]
@@ -194,11 +197,15 @@ namespace Undercooked.Appliances
         {
             meshRenderer.material = cleanMaterial;
             IsClean = true;
+            transform.GetChild(0).gameObject.tag = "CleanPlates";
+            abltManager.DisableHighlightSink();
         }
         
         [ContextMenu("SetDirty")]
         public void SetDirty()
         {
+           transform.GetChild(0).gameObject.tag = "DirtyPlates";
+            abltManager.EnableHighlightSink();
             meshRenderer.material = dirtyMaterial;
             IsClean = false;
             DisableSoup();

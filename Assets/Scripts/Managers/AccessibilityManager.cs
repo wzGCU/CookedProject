@@ -16,9 +16,9 @@ namespace Undercooked
         public bool isSlomo = true;
         public float gameSpeed = 0.75f;
 
-        private GameObject[] cuttingBoards;
+        
 
-        [Header("Materials for Highlights")]
+        [Header("Highlights")]
         //Highlight Interactables
         public bool EnableInteractableHighlightsWhenHeld = true;
         [SerializeField] private Material originalCounterMat, 
@@ -36,6 +36,17 @@ namespace Undercooked
             originalPlate,
             darkPlate;
 
+        [Header("Game Objects")]
+        public GameObject hobCooker;
+        public GameObject hobPan;
+        public GameObject trash;
+        public GameObject deliverCounter;
+        public GameObject sink;
+        private GameObject[] cuttingBoards;
+        private GameObject[] plates;
+        private GameObject[] fullplates;
+        private GameObject[] dirtyplates;
+
         [Header("Variables for seeing when walls are on/off")]
         public bool isShortDistanceWalls = true;
         public bool isShortDistanceCounters = true;
@@ -45,7 +56,7 @@ namespace Undercooked
         {
             this.fixedDeltaTime = Time.fixedDeltaTime;
             cuttingBoards = GameObject.FindGameObjectsWithTag("CuttingBoards");
-            DisableHighlightCuttingBoards();
+            DisableAllButTaken();
             
         }
         private void FixedUpdate()
@@ -64,7 +75,35 @@ namespace Undercooked
             Debug.Log("Change Speed to: " + Time.timeScale);
         }
 
-     
+         public void HandleIngredient(Ingredient data)
+            {
+            EnableHighlightTrash();
+
+            if (data.Status == IngredientStatus.Raw)
+                {
+                    EnableHighlightCuttingBoard();
+                    DisableHighlightCooking();
+                    DisableHighlightPlates();
+
+                }
+                if (data.Status == IngredientStatus.Processed)
+                {
+                    DisableHighlightCuttingBoards();
+                    EnableHighlightCooking();
+                if (data.Type == IngredientType.Lettuce) EnableHighlightPlates();
+                else DisableHighlightPlates();
+
+                }
+                if (data.Status == IngredientStatus.Cooked)
+                {
+                    DisableHighlightCuttingBoards();
+                    DisableHighlightCooking();
+                    EnableHighlightPlates();
+                }
+            
+            }
+
+        //All interactables Higglight functions
         public void SwitchHighlightCuttingBoard(bool isHighlighted)
         {
             if (isHighlighted)
@@ -76,7 +115,7 @@ namespace Undercooked
                 DisableHighlightCuttingBoards();
             }
         }
-        void EnableHighlightCuttingBoard()
+        public void EnableHighlightCuttingBoard()
         {
             if (EnableInteractableHighlightsWhenHeld)
             {
@@ -108,37 +147,6 @@ namespace Undercooked
             
         }
 
-        void EnableHighlightCooking()
-        {
-            if (EnableInteractableHighlightsWhenHeld)
-            {
-
-            }
-        }
-
-        void DisableHighlightCooking()
-        {
-            if (EnableInteractableHighlightsWhenHeld)
-            {
-
-            }
-        }
-
-        void EnableHighhlightPlate()
-        {
-            if (EnableInteractableHighlightsWhenHeld)
-            {
-
-            }
-        }
-        void DisableHighlightPlate()
-        {
-            if (EnableInteractableHighlightsWhenHeld)
-            {
-
-            }
-        }
-
         public void EnableHighlightCounters()
         {
             if (EnableInteractableHighlightsWhenHeld)
@@ -153,39 +161,140 @@ namespace Undercooked
                 isShortDistanceCounters= false;
             }
         }
+        
+        public void EnableHighlightCooking()
+        {
+            if (EnableInteractableHighlightsWhenHeld)
+            {
+                hobCooker.transform.GetChild(0).gameObject.SetActive(true);
+                hobCooker.transform.GetChild(1).GetComponent<Renderer>().material = originalPot;
+                hobPan.GetComponent<Renderer>().material = originalCuttingMat;
+            }
+        }
+        public void DisableHighlightCooking()
+        {
+            if (EnableInteractableHighlightsWhenHeld)
+            {
+                if (hobPan.transform.parent.GetComponent<CookingPot>().IsEmpty())
+                {
+                    hobCooker.transform.GetChild(0).gameObject.SetActive(false);
+                    hobCooker.transform.GetChild(1).GetComponent<Renderer>().material = darkPot;
+                    hobPan.GetComponent<Renderer>().material = darkCuttingMat;
+                }
+            }
+        }
 
-        public void HandleIngredient(Ingredient data)
+        public void EnableHighlightSink()
+        {
+            Debug.Log("enablingsink");
+            if (EnableInteractableHighlightsWhenHeld)
+            {
+                sink.GetComponent<Renderer>().material = originalSink;
+            }
+        }
+        public void DisableHighlightSink()
+        {
+            if (EnableInteractableHighlightsWhenHeld)
+            {
+                dirtyplates = GameObject.FindGameObjectsWithTag("DirtyPlates");
+                if (dirtyplates.Length == 0)
+                {
+                    sink.GetComponent<Renderer>().material = darkSink;
+                }
+                else
+                {
+                    foreach(GameObject plate in dirtyplates)
+                    {
+                        Debug.Log(plate.name);
+                    }
+                }
+            }
+        }
+
+        public void EnableHighlightPlates()
+        {
+            if (EnableInteractableHighlightsWhenHeld)
+            {
+                plates = GameObject.FindGameObjectsWithTag("CleanPlates");
+                foreach (GameObject platePrefab in plates)
+                {
+                    platePrefab.GetComponent<Renderer>().material = originalPlate;
+                }
+            }
+
+        }
+        public void DisableHighlightPlates()
+        {
+            if (EnableInteractableHighlightsWhenHeld)
+            {
+                plates = GameObject.FindGameObjectsWithTag("CleanPlates");
+                foreach (GameObject platePrefab in plates)
+                {
+                    if (!platePrefab.transform.GetChild(1).gameObject.activeSelf)
+                    {
+                        platePrefab.GetComponent<Renderer>().material = darkPlate;
+                        
+                    }
+
+
+                }
+            }
+
+
+        }
+
+        public void EnableHighlightTrash()
+        {
+            if (EnableInteractableHighlightsWhenHeld)
+            trash.GetComponent<Renderer>().material = originalTrash;
+        }
+        public void DisableHighlightTrash()
+        {
+            if (EnableInteractableHighlightsWhenHeld)
+                trash.GetComponent<Renderer>().material = darkTrash;
+        }
+
+        public void EnableHighlghtFoodCounter()
         {
             
-            if (data.Status == IngredientStatus.Raw)
+            if (EnableInteractableHighlightsWhenHeld)
             {
-                EnableHighlightCuttingBoard();
-                DisableHighlightCooking();
-                DisableHighlightPlate();
-
+                Material[] newMaterials;
+                newMaterials = deliverCounter.GetComponent<Renderer>().materials;
+                newMaterials[1] = originalFoodGiver;
+                deliverCounter.GetComponent<Renderer>().materials = newMaterials;
             }
-            if (data.Status == IngredientStatus.Processed)
+                
+        }
+        public void DisableHighlghtFoodCounter()
+        {
+            if (EnableInteractableHighlightsWhenHeld)
             {
-                DisableHighlightCuttingBoards();
-                EnableHighlightCooking();
-                if (data.Type == IngredientType.Lettuce) EnableHighhlightPlate();
-                else DisableHighlightPlate();
-
+                fullplates = GameObject.FindGameObjectsWithTag("FullPlates");
+                if (fullplates.Length == 0)
+                {
+                    Material[] newMaterials;
+                    newMaterials = deliverCounter.GetComponent<Renderer>().materials;
+                    newMaterials[1] = darkFoodGiver;
+                    deliverCounter.GetComponent<Renderer>().materials = newMaterials;
+                }
+                else
+                {
+                   
+                }
             }
-            if (data.Status == IngredientStatus.Cooked)
-            {
-                DisableHighlightCuttingBoards();
-                DisableHighlightCooking();
-                EnableHighhlightPlate();
-            }
-            
         }
 
         public void DisableAllButTaken()
         {
             DisableHighlightCuttingBoards();
             DisableHighlightCounters();
-
+            DisableHighlightPlates();
+            DisableHighlightCooking();
+            DisableHighlightSink();
+            DisableHighlightTrash();
+            DisableHighlghtFoodCounter();
+            
         }
        
         

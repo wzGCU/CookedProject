@@ -7,6 +7,9 @@ TagManager:
   - PlayerCooked
   - AccessibilityManager
   - CuttingBoards
+  - CleanPlates
+  - DirtyPlates
+  - FullPlates
   layers:
   - Default
   - TransparentFX

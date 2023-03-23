@@ -5,6 +5,7 @@ using Undercooked.Model;
 using Undercooked.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Undercooked;
 
 namespace Undercooked.Player
 {
@@ -13,6 +14,7 @@ namespace Undercooked.Player
         [SerializeField] private Color playerColor;
         [SerializeField] private Transform selector;
         [SerializeField] private Material playerUniqueColorMaterial;
+        private AccessibilityManager abltManager;
 
         [Header("Physics")]
         [SerializeField] private Rigidbody playerRigidbody;
@@ -67,7 +69,7 @@ namespace Undercooked.Player
 
             _interactableController = GetComponentInChildren<InteractableController>();
             knife.gameObject.SetActive(false);
-
+            abltManager = GameObject.FindGameObjectWithTag("AccessibilityManager").GetComponent<AccessibilityManager>(); 
             SetPlayerUniqueColor(playerColor);
         }
 
@@ -207,6 +209,7 @@ namespace Undercooked.Player
                     _currentPickable.gameObject.transform.SetPositionAndRotation(slot.transform.position,
                         Quaternion.identity);
                     _currentPickable.gameObject.transform.SetParent(slot);
+                    
                     return;
                 }
 
@@ -232,7 +235,9 @@ namespace Undercooked.Player
                 animator.SetBool(_hasPickupHash, false);
                 this.PlaySoundTransition(dropAudio);
                 _currentPickable.Drop();
+                abltManager.DisableHighlightTrash();
                 _currentPickable = null;
+                
                 return;
             }
 
@@ -248,6 +253,7 @@ namespace Undercooked.Player
 
             animator.SetBool(_hasPickupHash, false);
             this.PlaySoundTransition(dropAudio);
+            abltManager.DisableHighlightTrash();
             _currentPickable = null;
         }
 

@@ -15,6 +15,7 @@ namespace Undercooked.Appliances
             {
                 case CookingPot cookingPot:
                     cookingPot.EmptyPan();
+                    abltManager.DisableHighlightTrash();
                     break;
                 case Ingredient ingredient:
                     StartCoroutine(AnimateAndDestroy(ingredient));
@@ -22,6 +23,7 @@ namespace Undercooked.Appliances
                 case Plate plate:
                     if (plate.IsEmpty()) return false;
                     plate.RemoveAllIngredients();
+                    abltManager.DisableHighlightTrash();
                     return false;
             }
             return false;
@@ -50,6 +52,7 @@ namespace Undercooked.Appliances
                 yield return null;
             }
 
+            abltManager.DisableHighlightTrash();
             Destroy(pickable.gameObject);
         }
     }
