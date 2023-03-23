@@ -209,7 +209,7 @@ namespace Undercooked.Player
                     _currentPickable.gameObject.transform.SetPositionAndRotation(slot.transform.position,
                         Quaternion.identity);
                     _currentPickable.gameObject.transform.SetParent(slot);
-                    
+                    abltManager.EnableHighlightTrash();
                     return;
                 }
 
@@ -218,6 +218,7 @@ namespace Undercooked.Player
                 if (_currentPickable != null)
                 {
                     animator.SetBool(_hasPickupHash, true);
+                    abltManager.EnableHighlightTrash();
                     this.PlaySoundTransition(pickupAudio);
                 }
 

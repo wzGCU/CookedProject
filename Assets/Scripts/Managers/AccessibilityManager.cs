@@ -42,6 +42,7 @@ namespace Undercooked
         public GameObject trash;
         public GameObject deliverCounter;
         public GameObject sink;
+        public GameObject slowedText;
         private GameObject[] cuttingBoards;
         private GameObject[] plates;
         private GameObject[] fullplates;
@@ -69,9 +70,11 @@ namespace Undercooked
             if (Time.timeScale == 1.0f)
             {
                 Time.timeScale = gameSpeed;
+                slowedText.SetActive(true);
             }
             else
                 Time.timeScale = 1.0f;
+            slowedText.SetActive(false);
             Debug.Log("Change Speed to: " + Time.timeScale);
         }
 
