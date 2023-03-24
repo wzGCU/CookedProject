@@ -91,7 +91,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "WASD",
+                    "name": "WASD n Arrow",
                     "id": "00ca640b-d935-4593-8157-c05846ea39b3",
                     "path": "Dpad(mode=1)",
                     "interactions": "",
@@ -257,6 +257,17 @@
                 },
                 {
                     "name": "",
+                    "id": "9768e408-0123-4854-a2e3-266d6d057c9e",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "107b0db8-9f67-4400-b5dc-9ca2f9408baf",
                     "path": "<Gamepad>/buttonWest",
                     "interactions": "",
@@ -325,6 +336,17 @@
                     "name": "",
                     "id": "af86d100-9725-4281-9097-a6263f4711e7",
                     "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "SwitchAvatar",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "766e7dba-a919-4602-8b26-448000fc5ed5",
+                    "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
