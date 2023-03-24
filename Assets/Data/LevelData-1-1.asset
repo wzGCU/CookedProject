@@ -15,7 +15,9 @@ MonoBehaviour:
   levelName: 1-1
   orders:
   - {fileID: 11400000, guid: 199a5c7315df7ec498301906bd4f2c70, type: 2}
-  durationTime: 150
+  - {fileID: 11400000, guid: c3986e6c172832e4b992028d09c3ec3d, type: 2}
+  - {fileID: 11400000, guid: 3b22516c523a0c04d94511782fae7c0a, type: 2}
+  durationTime: 240
   star1Score: 30
   star2Score: 50
   star3Score: 70

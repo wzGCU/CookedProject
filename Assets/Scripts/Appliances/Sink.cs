@@ -73,8 +73,9 @@ namespace Undercooked.Appliances
         public override IPickable TryToPickUpFromSlot(IPickable playerHoldPickable)
         {
             if (playerHoldPickable != null) return null;
-            
+            abltManager.DisableHighlightPlates();
             return _cleanPlates.Count > 0 ? _cleanPlates.Pop() : null;
+            
         }
 
         public override void Interact(PlayerController playerController)

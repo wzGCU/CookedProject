@@ -156,7 +156,7 @@ namespace Undercooked.Managers
                 if (plateIngredients.Count != orderIngredients.Count) continue;
                 
                 var intersection = plateIngredients.Except(orderIngredients).ToList();
-                
+                Debug.Log(intersection);
                 if (intersection.Count != 0) continue; // doesn't match any plate
                 
                 var tip = CalculateTip(order);

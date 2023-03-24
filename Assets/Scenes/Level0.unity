@@ -3642,6 +3642,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2112068362648006324, guid: db2719eead6c12048948b81be3c2b482, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2277587471487640327, guid: db2719eead6c12048948b81be3c2b482, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8676729609636369977, guid: db2719eead6c12048948b81be3c2b482, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -4695,7 +4703,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 921817006}
-  m_LocalRotation: {x: 0.06473153, y: 0.676071, z: -0.059822794, w: 0.7315457}
+  m_LocalRotation: {x: 0.06473153, y: 0.676071, z: -0.059822798, w: 0.7315457}
   m_LocalPosition: {x: -8.182191, y: 1.4639859, z: -2.3559299}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5423,7 +5431,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 988690307}
-  m_LocalRotation: {x: 0.06473153, y: 0.676071, z: -0.059822794, w: 0.7315457}
+  m_LocalRotation: {x: 0.06473153, y: 0.676071, z: -0.059822798, w: 0.7315457}
   m_LocalPosition: {x: -8.182191, y: 1.4639859, z: -2.3559299}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -12574,6 +12582,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1882227829}
     m_Modifications:
+    - target: {fileID: 99827307, guid: 3e3a7e6863bb3f6489e80c060fd01919, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1247608749, guid: 3e3a7e6863bb3f6489e80c060fd01919, type: 3}
+      propertyPath: randomSeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1247608749, guid: 3e3a7e6863bb3f6489e80c060fd01919, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3662230333295012521, guid: 3e3a7e6863bb3f6489e80c060fd01919, type: 3}
       propertyPath: playerInput
       value: 

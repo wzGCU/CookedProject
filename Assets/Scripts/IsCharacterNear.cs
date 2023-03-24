@@ -32,14 +32,18 @@ namespace Undercooked
                 {
                     if(transform.GetChild(0).childCount != 0)
                     {
-                        if(transform.GetChild(0).transform.GetChild(0).name!="Plate1"
-                            && transform.GetChild(0).transform.GetChild(0).name != "Plate2" 
+                        if (transform.GetChild(0).transform.GetChild(0).name != "Plate1"
+                            && transform.GetChild(0).transform.GetChild(0).name != "Plate2"
                             && transform.GetChild(0).transform.GetChild(0).name != "Plate3"
                             )
                         {
                             LightTextures();
                         }
                         else if (abltManager.platesEnabled) { LightTextures(); }
+                        else
+                        {
+                            DarkTextures();
+                        }
                         
                     }
                     else

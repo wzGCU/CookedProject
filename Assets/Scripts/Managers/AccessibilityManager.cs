@@ -215,7 +215,7 @@ namespace Undercooked
                 {
                     foreach(GameObject plate in dirtyplates)
                     {
-                        Debug.Log(plate.name);
+                        //bug.Log(plate.name);
                     }
                 }
             }
