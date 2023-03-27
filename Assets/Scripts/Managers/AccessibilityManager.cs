@@ -1,15 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Undercooked.Appliances;
 using Undercooked.Data;
 using Undercooked.Model;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace Undercooked
 {
     
     public class AccessibilityManager : MonoBehaviour
     {
+
+        public bool isFirstPlayer=false;
 
         public bool platesEnabled;
         private float fixedDeltaTime;
@@ -43,7 +48,11 @@ namespace Undercooked
         public GameObject trash;
         public GameObject deliverCounter;
         public GameObject sink;
-        public GameObject slowedText;
+        public TextMeshProUGUI slowedText;
+        public Image controls;
+        public Sprite GamepadControlsSprite;
+        public Sprite KeyboardControlsSprite;
+        public TextMeshProUGUI startText;
         private GameObject[] cuttingBoards;
         private GameObject[] plates;
         private GameObject[] fullplates;
@@ -58,13 +67,22 @@ namespace Undercooked
         {
             this.fixedDeltaTime = Time.fixedDeltaTime;
             cuttingBoards = GameObject.FindGameObjectsWithTag("CuttingBoards");
-            DisableAllButTaken();
-            DisableHighlightPlates();
+            if (EnableInteractableHighlightsWhenHeld)
+            {
+                DisableAllButTaken();
+                DisableHighlightPlates();
+                if (isSlomo)
+                {
+                    ChangeSpeed();
+                }
+            }
+               
             
         }
         private void FixedUpdate()
         {
             Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
+            
         }
         public void ChangeSpeed()
         {
@@ -72,13 +90,13 @@ namespace Undercooked
             if (Time.timeScale == 1.0f)
             {
                 Debug.Log(slowedText.name);
-                slowedText.SetActive(true);
+                slowedText.enabled = true;
                 Time.timeScale = gameSpeed;
                 
             }
             else
                 Time.timeScale = 1.0f;
-            slowedText.SetActive(false);
+            slowedText.enabled = false;
             Debug.Log("Change Speed to: " + Time.timeScale);
         }
 
@@ -110,8 +128,20 @@ namespace Undercooked
                     DisableHighlightCooking();
                     EnableHighlightPlates();
                 }
-            
+        }
+
+        public void UpdateControlsVisuals(PlayerInput input)
+        {
+            if (input.currentControlScheme == "Gamepad"){
+                controls.sprite = GamepadControlsSprite;
+                startText.text = "Press START to play";
             }
+            else
+            {
+                controls.sprite = KeyboardControlsSprite;
+                startText.text = "Press ENTER to play";
+            }
+        }
 
         //All interactables Higglight functions
         public void SwitchHighlightCuttingBoard(bool isHighlighted)

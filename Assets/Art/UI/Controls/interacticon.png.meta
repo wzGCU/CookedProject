@@ -1,12 +1,12 @@
 fileFormatVersion: 2
-guid: fed24fd857452ad438e9375634bc51b7
+guid: 62650e947ff82e9499329500163846f2
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -37,24 +37,24 @@ TextureImporter:
     filterMode: 1
     aniso: 2
     mipBias: 0
-    wrapU: 1
-    wrapV: 1
+    wrapU: 0
+    wrapV: 0
     wrapW: 0
-  nPOTScale: 0
+  nPOTScale: 1
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 0
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 512
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 1
+  alphaIsTransparency: 0
   spriteTessellationDetail: -1
-  textureType: 8
+  textureType: 0
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -153,55 +153,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: warnicon_accessible
-      rect:
-        serializedVersion: 2
-        x: 1024
-        y: 512
-        width: 512
-        height: 512
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d5b311924abc0254691527e3128d3624
-      internalID: 1670736002
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      UndercookedIcons1.png_ACCESSIBLE_0: 718099543
-      UndercookedIcons1.png_ACCESSIBLE_2: -450746926
-      UndercookedIcons1.png_ACCESSIBLE_8: -1133894661
-      UndercookedIcons1.png_ACCESSIBLE_11: 457997972
-      UndercookedIcons1.png_ACCESSIBLE_5: -457885036
-      UndercookedIcons1.png_ACCESSIBLE_7: -1426517383
-      UndercookedIcons1.png_ACCESSIBLE_6: -1451075564
-      UndercookedIcons1.png_ACCESSIBLE_4: -1008872464
-      UndercookedIcons1.png_ACCESSIBLE_13: 479027080
-      UndercookedIcons1.png_ACCESSIBLE_12: 2027670066
-      UndercookedIcons1.png_ACCESSIBLE_14: -1237397205
-      UndercookedIcons1.png_ACCESSIBLE_3: 1535780568
-      warnicon_accessible: 1670736002
-      UndercookedIcons1.png_ACCESSIBLE_1: -1914961347
-      UndercookedIcons1.png_ACCESSIBLE_15: -335764509
-      UndercookedIcons1.png_ACCESSIBLE_9: -1677908407
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

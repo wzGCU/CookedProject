@@ -6,6 +6,7 @@ using Undercooked.Managers;
 using Undercooked.Model;
 using UnityEngine;
 using UnityEngine.Assertions;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 using Image = UnityEngine.UI.Image;
 using Slider = UnityEngine.UI.Slider;
 
@@ -15,11 +16,16 @@ namespace Undercooked.Appliances
     [RequireComponent(typeof(Collider))]
     public class CookingPot : Interactable, IPickable
     {
+        private Vector3 maxSize = new Vector3(2.2f, 2.2f, 2.2f);
+        private Vector3 bgReset = new Vector3(1.1f, 1.1f, 1.1f);
+        private Vector3 additionVector=new Vector3(1f,1f,1f);
+
         [Header("UI")]
         [SerializeField] private Slider slider;
         [SerializeField] private List<Image> ingredientUISlots;
         [Tooltip("green popup when finished cooking, red alert for when it's about to burn")]
         [SerializeField] private Image warningPopup;
+        [SerializeField] private Image warningBG;
         [SerializeField] private Image greenCheckPopup;
         [SerializeField] private Sprite plusIcon;
         [SerializeField] private Sprite burnIcon;
@@ -219,19 +225,26 @@ namespace Undercooked.Appliances
             IsCookFinished = false;
             _isCooking = false;
             warningPopup.transform.localScale = Vector3.zero;
+            warningBG.transform.localScale = bgReset;
+            additionVector = Vector3.one;
             greenCheckPopup.transform.localScale = Vector3.zero;
             
             UpdateIngredientsUI();
+
+            if (!abltManager.EnableInteractableHighlightsWhenHeld)
+            {
+                // deactivate FX's
+                whiteSmoke.gameObject.SetActive(false);
+                blackSmoke.gameObject.SetActive(false);
+            }
             
-            // deactivate FX's
-            whiteSmoke.gameObject.SetActive(false);
-            blackSmoke.gameObject.SetActive(false);
         }
 
         public void DroppedIntoHob()
         {
             _onHob = true;
             warningPopup.enabled = false;
+            warningBG.enabled = false;
 
             if (Ingredients.Count == 0 || IsBurned) return;
             
@@ -260,8 +273,9 @@ namespace Undercooked.Appliances
             if (_burnCoroutine == null) return;
             
             StopCoroutine(_burnCoroutine);
-                
+
             warningPopup.enabled = false;
+            warningBG.enabled = false;
             greenCheckPopup.enabled = false;
             _inBurnProcess = false;
 
@@ -322,6 +336,7 @@ namespace Undercooked.Appliances
             {
                 AnimateGreenCheck();    
             }
+            if(!abltManager.EnableInteractableHighlightsWhenHeld)
             whiteSmoke.gameObject.SetActive(true);
             
             while (_currentBurnTime < timeLine[1])
@@ -331,66 +346,114 @@ namespace Undercooked.Appliances
             }
             
             warningPopup.enabled = true;
+            if (abltManager.EnableInteractableHighlightsWhenHeld)
+            {
+                warningBG.enabled = true;
+                
+                warningBG.transform.localScaleTransition(maxSize, .5f, LeanEase.Smooth);
+            }
 
             var internalCount = 0f;
-            
-            // pulsating at 2Hz
-            while (_currentBurnTime < timeLine[2])
-            {
-                _currentBurnTime += Time.deltaTime;
-                internalCount += Time.deltaTime;
-                if (internalCount > 0.5f)
-                {
-                    internalCount = 0f;
-                    PulseAndBeep(1.15f);
-                }
-                yield return null;
-            }
-            
-            // pulsating at 5Hz
-            while (_currentBurnTime < timeLine[3])
-            {
-                _currentBurnTime += Time.deltaTime;
-                internalCount += Time.deltaTime;
-                if (internalCount > 0.2f)
-                {
-                    internalCount = 0f;
-                    PulseAndBeep(1.25f);
-                }
-                yield return null;
-            }
 
-            var initialColor = liquidMaterial.color;
-            var delta = timeLine[4] - timeLine[3];
-            
-            // pulsating at 10Hz
-            while (_currentBurnTime < timeLine[4])
+            if (abltManager.EnableInteractableHighlightsWhenHeld)
             {
-                
-                var interpolate = (_currentBurnTime - timeLine[3]) / delta;
-                liquidMaterial.color = Color.Lerp(initialColor, burnLiquid, interpolate);
-                _currentBurnTime += Time.deltaTime;
-                internalCount += Time.deltaTime;
-                if (internalCount > 0.1f)
+                while (_currentBurnTime < timeLine[2])
                 {
-                    internalCount = 0f;
-                    PulseAndBeep(1.35f);
+                    _currentBurnTime += Time.deltaTime;
+                    internalCount += Time.deltaTime;
+                    if (internalCount > 0.5f)
+                    {
+                        internalCount = 0f;
+                        PulseAndBeep(1.1f);
+                    }
+                    yield return null;
                 }
-                yield return null;
+                var initialColor = liquidMaterial.color;
+                var delta = timeLine[4] - timeLine[3];
+                // pulsating at 10Hz
+                while (_currentBurnTime < timeLine[4])
+                {
+
+                    var interpolate = (_currentBurnTime - timeLine[3]) / delta;
+                    liquidMaterial.color = Color.Lerp(initialColor, burnLiquid, interpolate);
+                    _currentBurnTime += Time.deltaTime;
+                    internalCount += Time.deltaTime;
+                    if (internalCount > 0.5f)
+                    {
+                        internalCount = 0f;
+                        PulseAndBeepAccessible();
+                    }
+                        
+                    yield return null;
+                }
             }
-            
+            else
+            {
+                // pulsating at 2Hz
+                while (_currentBurnTime < timeLine[2])
+                {
+                    _currentBurnTime += Time.deltaTime;
+                    internalCount += Time.deltaTime;
+                    if (internalCount > 0.5f)
+                    {
+                        internalCount = 0f;
+                        PulseAndBeep(1.15f);
+                    }
+                    yield return null;
+                }
+
+                // pulsating at 5Hz
+                while (_currentBurnTime < timeLine[3])
+                {
+                    _currentBurnTime += Time.deltaTime;
+                    internalCount += Time.deltaTime;
+                    if (internalCount > 0.2f)
+                    {
+                        internalCount = 0f;
+                        PulseAndBeep(1.5f);
+                    }
+                    yield return null;
+                }
+
+                var initialColor = liquidMaterial.color;
+                var delta = timeLine[4] - timeLine[3];
+
+                // pulsating at 10Hz
+                while (_currentBurnTime < timeLine[4])
+                {
+
+                    var interpolate = (_currentBurnTime - timeLine[3]) / delta;
+                    liquidMaterial.color = Color.Lerp(initialColor, burnLiquid, interpolate);
+                    _currentBurnTime += Time.deltaTime;
+                    internalCount += Time.deltaTime;
+                    if (internalCount > 0.1f)
+                    {
+                        internalCount = 0f;
+                        PulseAndBeep(2f);
+                    }
+                    yield return null;
+                }
+
+                
+            }
             // FX's
             warningPopup.enabled = false;
+            warningBG.enabled = false;
             IsBurned = true;
             abltManager.DisableHighlightPlates();
             _inBurnProcess = false;
             _currentBurnTime = 0f;
-            
+
             UpdateIngredientsUI();
-            
-            whiteSmoke.gameObject.SetActive(false);
-            blackSmoke.gameObject.SetActive(true);
-             Debug.Log("[CookingPot] The food is burned!");
+
+            if (!abltManager.EnableInteractableHighlightsWhenHeld)
+            {
+                whiteSmoke.gameObject.SetActive(false);
+                blackSmoke.gameObject.SetActive(true);
+            }
+
+            Debug.Log("[CookingPot] The food is burned!");
+
         }
         
         private void AnimateGreenCheck()
@@ -398,19 +461,46 @@ namespace Undercooked.Appliances
             greenCheckPopup.transform
                 .localScaleTransition(Vector3.zero, .25f)
                 .localScaleTransition(Vector3.one, .25f)
-                .JoinDelayTransition(2.0f)
+                .JoinDelayTransition(3.0f)
                 .localScaleTransition(Vector3.zero, .25f);
         }
 
        private void PulseAndBeep(float intensity = 1.1f)
         {
-            Vector3 pulseVector = new Vector3(intensity, intensity, intensity);
+            if (abltManager.EnableInteractableHighlightsWhenHeld)
+            {
+                Vector3 pulseVector = new Vector3(intensity,intensity,intensity);
+
+
+                warningPopup.transform
+                    .PlaySoundTransition(beep)
+                    .JoinDelayTransition(.04f)
+                    .localScaleTransition(pulseVector, 1f, LeanEase.Smooth);
+            }
+            else
+            {
+                Vector3 pulseVector = new Vector3(intensity, intensity, intensity);
+
+                warningPopup.transform
+                    .PlaySoundTransition(beep)
+                    .localScaleTransition(pulseVector, .03f, LeanEase.Accelerate)
+                    .JoinDelayTransition(.04f)
+                    .localScaleTransition(Vector3.one, 0.03f, LeanEase.Accelerate);
+            }
+            
+        }
+
+        private void PulseAndBeepAccessible()
+        {
+            Vector3 pulseVector = new Vector3(2, 2, 2);
+            Vector3 addLittle = new Vector3(0.1f, 0.1f, 0.1f);
+            additionVector += addLittle;
 
             warningPopup.transform
                 .PlaySoundTransition(beep)
-                .localScaleTransition(pulseVector, .03f, LeanEase.Accelerate)
-                .JoinDelayTransition(.04f)
-                .localScaleTransition(Vector3.one, 0.03f, LeanEase.Accelerate);
+                //.localScaleTransition(additionVector, 1f, LeanEase.Accelerate)
+                //.JoinDelayTransition(.04f)
+                .localScaleTransition(additionVector, 0.3f, LeanEase.Accelerate);
         }
        
         private void TriggerSuccessfulCook()

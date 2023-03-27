@@ -74,7 +74,7 @@ namespace Undercooked.Managers
                 Assert.IsNotNull(orderManager);
                 Assert.IsNotNull(level1);
                 Assert.IsNotNull(cameraManager);
-                //Assert.IsNotNull(inputController);
+                Assert.IsNotNull(inputController);
             #endif
         }
 

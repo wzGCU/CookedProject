@@ -225,7 +225,7 @@
                 {
                     "name": "",
                     "id": "e2d26e32-e943-4112-89f2-e1d40fa5fd10",
-                    "path": "<Keyboard>/v",
+                    "path": "<Keyboard>/j",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -258,7 +258,7 @@
                 {
                     "name": "",
                     "id": "9768e408-0123-4854-a2e3-266d6d057c9e",
-                    "path": "<Keyboard>/c",
+                    "path": "<Keyboard>/k",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -291,7 +291,7 @@
                 {
                     "name": "",
                     "id": "444ed21e-c231-4437-a59a-e2f07ce886ea",
-                    "path": "<Keyboard>/b",
+                    "path": "<Keyboard>/h",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -302,7 +302,7 @@
                 {
                     "name": "",
                     "id": "6161f40b-acb9-4bdd-b94a-c39224fb6bb9",
-                    "path": "<Gamepad>/buttonNorth",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -324,7 +324,7 @@
                 {
                     "name": "",
                     "id": "c6099733-a4e8-4776-a136-48188288141a",
-                    "path": "<Gamepad>/leftShoulder",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -335,7 +335,7 @@
                 {
                     "name": "",
                     "id": "af86d100-9725-4281-9097-a6263f4711e7",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/u",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",

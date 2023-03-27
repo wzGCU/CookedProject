@@ -3,6 +3,7 @@ using Lean.Transition;
 using Undercooked.Player;
 using UnityEngine;
 using UnityEngine.Assertions;
+using static Undercooked.Player.InputController;
 
 namespace Undercooked.Managers
 {
@@ -10,6 +11,7 @@ namespace Undercooked.Managers
     {
         [SerializeField] private CinemachineVirtualCamera virtualCamera1;
         [SerializeField] private CinemachineVirtualCamera virtualCamera2;
+        [SerializeField] private CinemachineVirtualCamera virtualCamera4;
         [SerializeField] private CinemachineVirtualCamera dollyCamera;
         [SerializeField] private Transform dollyCameraTarget;
 
@@ -20,12 +22,14 @@ namespace Undercooked.Managers
         private Transform _avatar1;
         private Transform _avatar2;
         private InputController.PlayerControllerIndex _lastActivatedPlayerController;
+
+        private AccessibilityManager abltManager;
         
         private void Awake()
         {
             #if UNITY_EDITOR
                 Assert.IsNotNull(virtualCamera1);
-                //Assert.IsNotNull(virtualCamera2);
+                Assert.IsNotNull(virtualCamera2);
                 Assert.IsNotNull(dollyCamera);
                 Assert.IsNotNull(starGlowParticleSystem);
                 Assert.IsNotNull(dollyCameraTarget);
@@ -34,18 +38,25 @@ namespace Undercooked.Managers
             starGlowParticleSystem.Play();
             _particleSystemTransform = starGlowParticleSystem.transform;
             _avatar1 = virtualCamera1.Follow;
-            _avatar2 = virtualCamera1.Follow;
+            _avatar2 = virtualCamera2.Follow;
             _particleSystemTransform.position = _avatar1.position;
+            abltManager = GameObject.FindGameObjectWithTag("AccessibilityManager").GetComponent<AccessibilityManager>();
         }
 
         public void FocusFirstPlayer()
         {
+            if(!abltManager.EnableInteractableHighlightsWhenHeld)
             SwitchFocus(InputController.PlayerControllerIndex.First);
+            else
+            {
+                SetCameraAccessible();
+            }
         }
 
         private void OnEnable()
         {
             InputController.OnSwitchPlayerController += HandleSwitchPlayerController;
+            
         }
 
         private void OnDisable()
@@ -55,9 +66,22 @@ namespace Undercooked.Managers
 
         private void HandleSwitchPlayerController(InputController.PlayerControllerIndex playerControllerIndex)
         {
-           // SwitchFocus(playerControllerIndex);
+            if(!abltManager.EnableInteractableHighlightsWhenHeld)
+           SwitchFocus(playerControllerIndex);
         }
+        private void SetCameraAccessible()
+        {
+            dollyCamera.gameObject.SetActive(false);
+            dollyCameraTarget.gameObject.SetActive(false);
 
+            
+           virtualCamera1.gameObject.SetActive(false);
+           virtualCamera2.gameObject.SetActive(false);
+            virtualCamera4.gameObject.SetActive(true);
+               
+            
+            
+        }
         private void SwitchFocus(InputController.PlayerControllerIndex playerControllerIndex)
         {
             dollyCamera.gameObject.SetActive(false);
@@ -90,20 +114,30 @@ namespace Undercooked.Managers
 
         internal void SwitchDollyCamera()
         {
-            _lastActivatedPlayerController = InputController.PlayerControllerIndex.None;
+            if (!abltManager.EnableInteractableHighlightsWhenHeld)
+            {
+                _lastActivatedPlayerController = InputController.PlayerControllerIndex.None;
+
+                virtualCamera1.gameObject.SetActive(false);
+                virtualCamera2.gameObject.SetActive(false);
+                dollyCamera.gameObject.SetActive(true);
+                dollyCameraTarget.gameObject.SetActive(true);
+            }
             
-            virtualCamera1.gameObject.SetActive(false);
-            virtualCamera2.gameObject.SetActive(false);
-            dollyCamera.gameObject.SetActive(true);
-            dollyCameraTarget.gameObject.SetActive(true);
         }
         
         private void MoveStarParticle(Transform from, Transform to, float delayInSeconds = 1f)
         {
-            starGlowParticleSystem.Play();
-            _particleSystemTransform.position = from.position;
-            _particleSystemTransform
-                .positionTransition(to.position, delayInSeconds, LeanEase.Smooth);
+            if (!abltManager.EnableInteractableHighlightsWhenHeld)
+            {
+                starGlowParticleSystem.Play();
+                _particleSystemTransform.position = from.position;
+                _particleSystemTransform
+                    .positionTransition(to.position, delayInSeconds, LeanEase.Smooth);
+            }
+            
         }
     }
 }
+//Vector3(0.0500000007,6.92999983,-5.9000001)
+//Vector3(0.0500000007,7.78999996,-6.38000011)

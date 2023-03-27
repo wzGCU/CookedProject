@@ -22,7 +22,7 @@ namespace Undercooked.Player
     
         [SerializeField] private PlayerInput playerInput;
         [SerializeField] private PlayerController playerController1;
-      //  [SerializeField] private PlayerController playerController2;
+        [SerializeField] private PlayerController playerController2;
 
         private bool _isFirstPlayerControllerActive;
     
@@ -48,14 +48,14 @@ namespace Undercooked.Player
             #if UNITY_EDITOR
             Assert.IsNotNull(playerInput);
             Assert.IsNotNull(playerController1);
-            //   Assert.IsNotNull(playerController2);
+            Assert.IsNotNull(playerController2);
 #endif
             abltManager = GameObject.FindGameObjectWithTag("AccessibilityManager").GetComponent<AccessibilityManager>();
         }
         
         internal void EnableFirstPlayerController()
         {
-           // playerController2.DeactivatePlayer();
+           playerController2.DeactivatePlayer();
             playerController1.ActivatePlayer();
             _isFirstPlayerControllerActive = true;
             OnSwitchPlayerController(PlayerControllerIndex.First);
@@ -64,7 +64,7 @@ namespace Undercooked.Player
         internal void EnableSecondPlayerController()
         {
             playerController1.DeactivatePlayer();
-          //  playerController2.ActivatePlayer();
+            playerController2.ActivatePlayer();
             _isFirstPlayerControllerActive = false;
             OnSwitchPlayerController(PlayerControllerIndex.Second);
         }
@@ -72,22 +72,24 @@ namespace Undercooked.Player
         internal void DisableAllPlayerControllers()
         {
             playerController1.DeactivatePlayer();
-           // playerController2.DeactivatePlayer();
+            playerController2.DeactivatePlayer();
             _isFirstPlayerControllerActive = false;
             UnsubscribePlayerActions();
         }
-        /*
+        
         private void TogglePlayerController()
         {
             if (_isFirstPlayerControllerActive)
             {
                 EnableSecondPlayerController();
+                abltManager.isFirstPlayer = false;
             }
             else
             {
                 EnableFirstPlayerController();
+                abltManager.isFirstPlayer = true;
             }
-        }*/
+        }
         
         private void OnEnable()
         {
@@ -123,7 +125,7 @@ namespace Undercooked.Player
             _switchAvatarAction = playerInput.currentActionMap["SwitchAvatar"];
             _startAtPlayerAction = playerInput.currentActionMap["Start@Player"];
             _startAtPlayerAction.performed += HandleStartAtPLayer;
-            _switchAvatarAction.performed += HandleChangeSpeed; 
+            _switchAvatarAction.performed += HandleSwitchAvatar; 
         }
 
         private void UnsubscribePlayerActions()
@@ -131,7 +133,7 @@ namespace Undercooked.Player
             if (_hasSubscribedPlayerActions == false) return;
             _hasSubscribedPlayerActions = false; 
             _startAtPlayerAction.performed -= HandleStartAtPLayer;
-            _switchAvatarAction.performed -= HandleChangeSpeed;
+            _switchAvatarAction.performed -= HandleSwitchAvatar;
         }
         
         private void SubscribeMenuActions()
@@ -160,15 +162,21 @@ namespace Undercooked.Player
             OnStartPressedAtMenu?.Invoke();
         }
 
+        private void HandleSwitchAvatar(InputAction.CallbackContext context)
+        {
+            
+            TogglePlayerController();
+            
+        }
+
         private void HandleChangeSpeed(InputAction.CallbackContext context)
         {
             abltManager.ChangeSpeed();
-            //TogglePlayerController();
-            
         }
 
         private void HandleControlsChanged(PlayerInput _playerInput)
         {
+            abltManager.UpdateControlsVisuals(_playerInput);
             Debug.Log($"ControlsChanged {playerInput.currentControlScheme}");
             //TODO: Controls change dynamically
         }

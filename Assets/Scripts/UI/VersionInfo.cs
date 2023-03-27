@@ -13,7 +13,7 @@ namespace Undercooked.UI
 #if UNITY_EDITOR
             Assert.IsNotNull(versionInfo);
 #endif
-            versionInfo.text = $"v {Application.version}";
+            //versionInfo.text = $"v {Application.version}";
         }
     }
 }

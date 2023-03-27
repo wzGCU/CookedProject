@@ -10,6 +10,7 @@ TagManager:
   - CleanPlates
   - DirtyPlates
   - FullPlates
+  - PlayerCooked2
   layers:
   - Default
   - TransparentFX

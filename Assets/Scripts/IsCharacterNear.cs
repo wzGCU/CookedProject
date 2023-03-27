@@ -7,7 +7,9 @@ namespace Undercooked
     public class IsCharacterNear : MonoBehaviour
     {
         public Material originalMat, darkMat;
-        private GameObject playerObject;
+        private Transform requiredTransform;
+        private GameObject playerObject1;
+        private GameObject playerObject2;
         private AccessibilityManager abltManager;
         [SerializeField] private float distanceRequired = 3;
         bool darkTexture, lightTexture;
@@ -17,7 +19,8 @@ namespace Undercooked
         void Start()
         {
             abltManager = GameObject.FindGameObjectWithTag("AccessibilityManager").GetComponent<AccessibilityManager>();
-            playerObject = GameObject.FindGameObjectWithTag("PlayerCooked");
+            playerObject1 = GameObject.FindGameObjectWithTag("PlayerCooked");
+            playerObject2 = GameObject.FindGameObjectWithTag("PlayerCooked2");
             GetComponent<Renderer>().material = darkMat;
             darkTexture = true;
             lightTexture = false;
@@ -28,6 +31,14 @@ namespace Undercooked
         {
             if (abltManager.EnableInteractableHighlightsWhenHeld)
             {
+                if (abltManager.isFirstPlayer)
+                {
+                    requiredTransform = playerObject1.transform;
+                }
+                else
+                {
+                    requiredTransform = playerObject2.transform;
+                }
                 if (isStove)
                 {
                     if(transform.GetChild(0).childCount != 0)
@@ -76,7 +87,7 @@ namespace Undercooked
 
         void ChangeTextures()
         {
-            float distance = Vector3.Distance(transform.position, playerObject.transform.position);
+            float distance = Vector3.Distance(transform.position, requiredTransform.position);
             if ((distance < distanceRequired-1) && darkTexture)
             {
                 LightTextures();
