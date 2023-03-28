@@ -18,6 +18,7 @@ namespace Undercooked.Managers
         [SerializeField] private float extraTimePerOrder = 20f;
         [SerializeField] private int maxConcurrentOrders = 5;
         [SerializeField] private OrdersPanelUI ordersPanelUI;
+        public int currentOrder = 0;
 
         private readonly List<Order> _orders = new List<Order>();
         private readonly Queue<Order> _poolOrders = new Queue<Order>();
@@ -95,6 +96,7 @@ namespace Undercooked.Managers
                 
                 order.Setup(GetRandomOrderData(), _orders.Count * extraTimePerOrder);
                 _orders.Add(order);
+                currentOrder++;
                 SubscribeEvents(order);
                 OnOrderSpawned?.Invoke(order);
             }
@@ -133,8 +135,43 @@ namespace Undercooked.Managers
 
         private OrderData GetRandomOrderData()
         {
-            var randomIndex = Random.Range(0, currentLevel.orders.Count);
-            return Instantiate(currentLevel.orders[randomIndex]);
+            if (currentOrder < 2) {
+                var randomIndex = Random.Range(0, currentLevel.orders.Count-1);
+                return Instantiate(currentLevel.orders[randomIndex]);
+            }
+            else if (currentOrder == 2)
+            {
+                return Instantiate(currentLevel.orders[2]);
+            }
+            else
+            {
+                float chance = Random.Range(0, 6);
+                /* 
+                 * Chances:
+                 * 1/6 for the Onion Soup (fastest)
+                 * 2/6 for the Tomato Soup (2nd fast)
+                 * 3/6 for the Vegetable Soup (hardest)
+                */
+                if (chance == 6)
+                {
+                    Debug.Log("[OrderManager] 1/6 chance, Onion Soup");
+                    return Instantiate(currentLevel.orders[0]);
+                }
+                else if (chance < 3)
+                {
+                    Debug.Log("[OrderManager] 3/6 chance, Vegetable Soup");
+                    return Instantiate(currentLevel.orders[2]);
+                }
+                else
+                {
+                    Debug.Log("[OrderManager] 2/6 chance, Tomato Soup");
+                    return Instantiate(currentLevel.orders[1]);
+                }
+
+            }
+            
+
+
         }
         
         public void CheckIngredientsMatchOrder(List<Ingredient> ingredients)

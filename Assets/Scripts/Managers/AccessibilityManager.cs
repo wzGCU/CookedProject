@@ -92,7 +92,8 @@ namespace Undercooked
                 Debug.Log(slowedText.name);
                 slowedText.enabled = true;
                 Time.timeScale = gameSpeed;
-                
+                Debug.Log("Change Speed to: " + Time.timeScale);
+
             }
             else
                 Time.timeScale = 1.0f;
@@ -110,7 +111,6 @@ namespace Undercooked
                 {
                     EnableHighlightCuttingBoard();
                     DisableHighlightCooking();
-                Debug.Log("idk why but raw");
                     DisableHighlightPlates();
                     DisableHighlightCooking();
 
@@ -128,6 +128,30 @@ namespace Undercooked
                     DisableHighlightCooking();
                     EnableHighlightPlates();
                 }
+        }
+
+        public void CheckIfOtherPlayerHasSomething()
+        {
+            DisableHighlightCounters();
+            GameObject focusedPlayer;
+            if (isFirstPlayer)
+            {
+                focusedPlayer = GameObject.FindGameObjectWithTag("PlayerCooked");
+                
+            }
+            else
+            {
+                focusedPlayer = GameObject.FindGameObjectWithTag("PlayerCooked2");
+            }
+
+            if (focusedPlayer.transform.GetChild(1).childCount != 0)
+            {
+                Ingredient outputIngredient = focusedPlayer.transform.GetChild(1).transform.GetChild(0).GetComponent<Ingredient>();
+                if (outputIngredient != null) {
+                    HandleIngredient(outputIngredient);
+                    EnableHighlightCounters();
+                }
+            }
         }
 
         public void UpdateControlsVisuals(PlayerInput input)

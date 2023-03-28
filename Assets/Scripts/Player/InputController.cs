@@ -83,12 +83,15 @@ namespace Undercooked.Player
             {
                 EnableSecondPlayerController();
                 abltManager.isFirstPlayer = false;
+                Debug.Log("switchedPlayer to 2");
             }
             else
             {
                 EnableFirstPlayerController();
                 abltManager.isFirstPlayer = true;
+                Debug.Log("switchedPlayer to 1");
             }
+            abltManager.CheckIfOtherPlayerHasSomething();
         }
         
         private void OnEnable()

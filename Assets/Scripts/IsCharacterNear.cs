@@ -41,21 +41,28 @@ namespace Undercooked
                 }
                 if (isStove)
                 {
-                    if(transform.GetChild(0).childCount != 0)
+                    if (transform.GetChild(0).childCount != 0)
                     {
-                        if (transform.GetChild(0).transform.GetChild(0).name != "Plate1"
-                            && transform.GetChild(0).transform.GetChild(0).name != "Plate2"
-                            && transform.GetChild(0).transform.GetChild(0).name != "Plate3"
-                            )
+                        if (transform.GetChild(0).transform.GetChild(0).name != "Plate1" &&
+                            transform.GetChild(0).transform.GetChild(0).name != "Plate2" &&
+                            transform.GetChild(0).transform.GetChild(0).name != "Plate3")
                         {
                             LightTextures();
                         }
-                        else if (abltManager.platesEnabled) { LightTextures(); }
+                        else
+                        if (transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).tag != "CleanPlates")
+                        {
+                            LightTextures();
+                        }
+                        else
+                        if (abltManager.platesEnabled)
+                        {
+                            LightTextures();
+                        }
                         else
                         {
                             DarkTextures();
                         }
-                        
                     }
                     else
                     {
@@ -68,7 +75,6 @@ namespace Undercooked
                             DarkTextures();
                         }
                     }
-                    
                 }
                 else
                 {

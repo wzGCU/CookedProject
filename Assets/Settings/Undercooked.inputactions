@@ -213,17 +213,6 @@
                 },
                 {
                     "name": "",
-                    "id": "755cf1ea-0427-4db4-a2f2-0f882b7be21a",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "PickUp",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "e2d26e32-e943-4112-89f2-e1d40fa5fd10",
                     "path": "<Keyboard>/j",
                     "interactions": "",
@@ -240,17 +229,6 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Dash",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6333bf62-10d4-4e49-9652-e6c24065614f",
-                    "path": "<Keyboard>/leftShift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
                     "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -279,45 +257,12 @@
                 },
                 {
                     "name": "",
-                    "id": "ee072ea1-a9d3-43c4-bce4-6d3b5b53d15f",
-                    "path": "<Keyboard>/ctrl",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Interact",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "444ed21e-c231-4437-a59a-e2f07ce886ea",
                     "path": "<Keyboard>/h",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Interact",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6161f40b-acb9-4bdd-b94a-c39224fb6bb9",
-                    "path": "<Gamepad>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Emote",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "08952bc6-648f-4cea-b618-774067963359",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Emote",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -336,17 +281,6 @@
                     "name": "",
                     "id": "af86d100-9725-4281-9097-a6263f4711e7",
                     "path": "<Keyboard>/u",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "SwitchAvatar",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "766e7dba-a919-4602-8b26-448000fc5ed5",
-                    "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
