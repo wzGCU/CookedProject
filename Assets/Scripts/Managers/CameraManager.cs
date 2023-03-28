@@ -39,6 +39,7 @@ namespace Undercooked.Managers
             _particleSystemTransform = starGlowParticleSystem.transform;
             _avatar1 = virtualCamera1.Follow;
             _avatar2 = virtualCamera2.Follow;
+            
             _particleSystemTransform.position = _avatar1.position;
             abltManager = GameObject.FindGameObjectWithTag("AccessibilityManager").GetComponent<AccessibilityManager>();
         }
@@ -49,7 +50,6 @@ namespace Undercooked.Managers
             {
                 SwitchFocus(InputController.PlayerControllerIndex.First);
             }
-            
             else
             {
                 SetCameraAccessible();
@@ -77,13 +77,20 @@ namespace Undercooked.Managers
         }
         private void SetCameraAccessible()
         {
-            dollyCamera.gameObject.SetActive(false);
+            /*
+            if (dollyCamera != null)
+            {
+                dollyCamera.gameObject.SetActive(false);
+                virtualCamera1.gameObject.SetActive(false);
+                virtualCamera2.gameObject.SetActive(false);
+                virtualCamera4.gameObject.SetActive(true);
+            }*/
+           
             dollyCameraTarget.gameObject.SetActive(false);
 
             
-           virtualCamera1.gameObject.SetActive(false);
-           virtualCamera2.gameObject.SetActive(false);
-            virtualCamera4.gameObject.SetActive(true);
+           
+            
                
             
             
