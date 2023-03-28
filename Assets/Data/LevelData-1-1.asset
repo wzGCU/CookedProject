@@ -18,6 +18,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c3986e6c172832e4b992028d09c3ec3d, type: 2}
   - {fileID: 11400000, guid: 3b22516c523a0c04d94511782fae7c0a, type: 2}
   durationTime: 240
-  star1Score: 30
-  star2Score: 50
-  star3Score: 70
+  star1Score: 50
+  star2Score: 100
+  star3Score: 160
