@@ -35,6 +35,8 @@ namespace Undercooked
             darkPot,
             originalTrash,
             darkTrash,
+            originalDishTray,
+            darkDishTray,
             originalSink,
             darkSink,
             originalFoodGiver,
@@ -46,6 +48,7 @@ namespace Undercooked
         public GameObject hobCooker;
         public GameObject hobPan;
         public GameObject trash;
+        public GameObject dishTray;
         public GameObject deliverCounter;
         public GameObject sink;
         public TextMeshProUGUI slowedText;
@@ -314,6 +317,23 @@ namespace Undercooked
 
         }
 
+        public void EnableHighlightDishTray()
+        {
+            if (EnableInteractableHighlightsWhenHeld)
+            {
+                dishTray.GetComponent<Renderer>().material = originalDishTray;
+            }
+            
+        }
+        public void DisableHighlightDishTray()
+        {
+            if (EnableInteractableHighlightsWhenHeld)
+            {
+                dishTray.GetComponent<Renderer>().material = darkDishTray;
+            }
+
+        }
+
         public void EnableHighlightTrash()
         {
             if (EnableInteractableHighlightsWhenHeld)
@@ -365,6 +385,7 @@ namespace Undercooked
             DisableHighlightSink();
             DisableHighlightTrash();
             DisableHighlghtFoodCounter();
+            DisableHighlightDishTray();
             
         }
        

@@ -45,8 +45,11 @@ namespace Undercooked.Managers
 
         public void FocusFirstPlayer()
         {
-            if(!abltManager.EnableInteractableHighlightsWhenHeld)
-            SwitchFocus(InputController.PlayerControllerIndex.First);
+            if (!abltManager.EnableInteractableHighlightsWhenHeld)
+            {
+                SwitchFocus(InputController.PlayerControllerIndex.First);
+            }
+            
             else
             {
                 SetCameraAccessible();
@@ -66,8 +69,11 @@ namespace Undercooked.Managers
 
         private void HandleSwitchPlayerController(InputController.PlayerControllerIndex playerControllerIndex)
         {
-            if(!abltManager.EnableInteractableHighlightsWhenHeld)
-           SwitchFocus(playerControllerIndex);
+            if (!abltManager.EnableInteractableHighlightsWhenHeld)
+            {
+                SwitchFocus(playerControllerIndex);
+            }
+          
         }
         private void SetCameraAccessible()
         {

@@ -2015,32 +2015,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 270442da6c0c482499e7b226ee0ef71b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFirstPlayer: 0
+  isFirstPlayer: 1
   platesEnabled: 0
-  isSlomo: 1
+  isSlomo: 0
   gameSpeed: 0.75
-  EnableInteractableHighlightsWhenHeld: 1
+  EnableInteractableHighlightsWhenHeld: 0
   originalCounterMat: {fileID: 2100000, guid: 82f0dae8296851b418058b575656bfe2, type: 2}
-  darkCounterMat: {fileID: 2100000, guid: d1739f43d8e67da41ae8de5f1630dac8, type: 2}
+  darkCounterMat: {fileID: 2100000, guid: 82f0dae8296851b418058b575656bfe2, type: 2}
   originalCuttingMat: {fileID: 2100000, guid: 2f3c432bb0122284f8ab2cade5a41185, type: 2}
-  darkCuttingMat: {fileID: 2100000, guid: 9e91a260a30c49b44896c13a9919a3ef, type: 2}
+  darkCuttingMat: {fileID: 2100000, guid: 2f3c432bb0122284f8ab2cade5a41185, type: 2}
   originalPot: {fileID: 2100000, guid: 1dc6f785664299444adc4c17685b3cfe, type: 2}
-  darkPot: {fileID: 2100000, guid: 2e0114d7b963e1b4c813ee601e55585a, type: 2}
+  darkPot: {fileID: 2100000, guid: 1dc6f785664299444adc4c17685b3cfe, type: 2}
   originalTrash: {fileID: 2100000, guid: c46741a7c8d422c49bee61cfc05c4795, type: 2}
-  darkTrash: {fileID: 2100000, guid: 00346fd838cfae74aafd4f67d7929017, type: 2}
+  darkTrash: {fileID: 2100000, guid: c46741a7c8d422c49bee61cfc05c4795, type: 2}
+  originalDishTray: {fileID: 2100000, guid: 4fc65dba632aa1d42b0a8d27c1ccf70c, type: 2}
+  darkDishTray: {fileID: 2100000, guid: 4fc65dba632aa1d42b0a8d27c1ccf70c, type: 2}
   originalSink: {fileID: 2100000, guid: 3376d9f446ca68944ab9124a823d985a, type: 2}
-  darkSink: {fileID: 2100000, guid: 5f6e975f8c13def43a652ba9f0a609ad, type: 2}
-  originalFoodGiver: {fileID: 2100000, guid: 52ddaef814472594fbb4f69e60560905, type: 2}
-  darkFoodGiver: {fileID: 2100000, guid: d07d2758a1319ad4da15d82d5afd2cc0, type: 2}
+  darkSink: {fileID: 2100000, guid: 3376d9f446ca68944ab9124a823d985a, type: 2}
+  originalFoodGiver: {fileID: 2100000, guid: 7a9778737005ac0469909dd09f7b92f6, type: 2}
+  darkFoodGiver: {fileID: 2100000, guid: 7a9778737005ac0469909dd09f7b92f6, type: 2}
   originalPlate: {fileID: 2100000, guid: 112c2cf1bc1e64545b11c40249c8cc94, type: 2}
-  darkPlate: {fileID: 2100000, guid: 6b5cf3b139365e84abcefa5b16283740, type: 2}
+  darkPlate: {fileID: 2100000, guid: 112c2cf1bc1e64545b11c40249c8cc94, type: 2}
   hobCooker: {fileID: 798861933}
   hobPan: {fileID: 1279624190}
   trash: {fileID: 1323394169}
+  dishTray: {fileID: 1517107604}
   deliverCounter: {fileID: 1452963923}
   sink: {fileID: 1181446345}
   slowedText: {fileID: 160403681}
-  controls: {fileID: 1498962473}
+  controls: {fileID: 0}
   GamepadControlsSprite: {fileID: 21300000, guid: f5f570d70951e31498b9becb9c9166f3, type: 3}
   KeyboardControlsSprite: {fileID: 21300000, guid: 0ccd9237dee99044ab610ecacf95840d, type: 3}
   startText: {fileID: 1791189570}
@@ -5207,7 +5210,6 @@ RectTransform:
   m_Children:
   - {fileID: 809989512}
   - {fileID: 1698801473}
-  - {fileID: 1498962472}
   - {fileID: 533830391}
   - {fileID: 904768777}
   - {fileID: 27899315}
@@ -7717,82 +7719,6 @@ Transform:
   m_Father: {fileID: 2006660624}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1498962471
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1498962472}
-  - component: {fileID: 1498962474}
-  - component: {fileID: 1498962473}
-  m_Layer: 5
-  m_Name: ControlKeys
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1498962472
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1498962471}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 952190990}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -200, y: -200}
-  m_SizeDelta: {x: 400, y: 400}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1498962473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1498962471}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0ccd9237dee99044ab610ecacf95840d, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 1
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1498962474
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1498962471}
-  m_CullTransparentMesh: 1
 --- !u!1001 &1506299357
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7932,6 +7858,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1517107604 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3996682421260529173, guid: 1482c22b965c79a4e8af14ffaad01efb, type: 3}
+  m_PrefabInstance: {fileID: 292298878166061018}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1520185842
 GameObject:
   m_ObjectHideFlags: 0
@@ -11990,6 +11921,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 36f8ec6d9f1d1184699283878a36167b, type: 2}
+    - target: {fileID: 8470253267703970039, guid: 849d5e5e71be2d74d901419aaa2bb7c4, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7a9778737005ac0469909dd09f7b92f6, type: 2}
     - target: {fileID: 8745310986742595186, guid: 849d5e5e71be2d74d901419aaa2bb7c4, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 126

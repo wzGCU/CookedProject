@@ -18,11 +18,13 @@ namespace Undercooked.Appliances
             
             var bottomPlate = _dirtyPlates[0];
             _dirtyPlates.Clear();
+            abltManager.DisableHighlightDishTray();
             return bottomPlate;
         }
 
         public void AddDirtyPlate(Plate plate)
         {
+            abltManager.EnableHighlightDishTray();
             // put the clean plate into the top of the cleanPile (physically)
             var topPileSlot = _dirtyPlates.Count == 0 ? Slot : _dirtyPlates.Last().Slot;
             

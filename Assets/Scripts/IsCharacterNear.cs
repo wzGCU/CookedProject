@@ -21,9 +21,14 @@ namespace Undercooked
             abltManager = GameObject.FindGameObjectWithTag("AccessibilityManager").GetComponent<AccessibilityManager>();
             playerObject1 = GameObject.FindGameObjectWithTag("PlayerCooked");
             playerObject2 = GameObject.FindGameObjectWithTag("PlayerCooked2");
-            GetComponent<Renderer>().material = darkMat;
-            darkTexture = true;
-            lightTexture = false;
+            if (abltManager.EnableInteractableHighlightsWhenHeld)
+            {
+                GetComponent<Renderer>().material = darkMat;
+                darkTexture = true;
+                lightTexture = false;
+            }
+
+            
         }
 
         // Update is called once per frame
