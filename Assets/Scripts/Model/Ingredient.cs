@@ -79,6 +79,7 @@ namespace Undercooked.Model
 
         public void ChangeToCooked()
         {
+            Debug.Log("this is cooked");
             Status = IngredientStatus.Cooked;
             var cookedMesh = data.cookedMesh;
             if (cookedMesh == null) return;

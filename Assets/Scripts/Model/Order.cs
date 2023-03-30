@@ -14,7 +14,7 @@ namespace Undercooked.Model
         public float RemainingTime { get; private set; }
         public float ArrivalTime { get; private set; }
         
-        private const float BaseInitialTime = 60f;
+        private const float BaseInitialTime = 65f;
         public float InitialRemainingTime { get; private set; } = BaseInitialTime;
 
         public OrderData OrderData => _orderData;

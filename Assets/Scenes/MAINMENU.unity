@@ -257,10 +257,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'MAP A
+  m_text: 'PLAY
 
 
-    ORIGINAL'
+    MAP A'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0948daf98c6efdd4490699378fe1d894, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: b7d55f3659ca16445b27ef7335a2629d, type: 2}
@@ -861,10 +861,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'MAP b
+  m_text: 'PLAY
 
 
-    modified'
+    MAP B'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0948daf98c6efdd4490699378fe1d894, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: b7d55f3659ca16445b27ef7335a2629d, type: 2}

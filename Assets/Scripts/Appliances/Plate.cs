@@ -44,9 +44,33 @@ namespace Undercooked.Appliances
                 Assert.IsTrue(ingredientUISlots.Count == MaxNumberIngredients);
             #endif
             
-            Setup();
+            SetupStart();
         }
-        
+
+        private void SetupStart()
+        {
+            _rigidbody.isKinematic = true;
+            _collider.enabled = false;
+            _soupMaterial = soup.gameObject.GetComponent<MeshRenderer>()?.material;
+
+        #if UNITY_EDITOR
+            Assert.IsNotNull(_soupMaterial);
+#endif
+
+            if (IsClean)
+            {
+                
+                transform.GetChild(0).gameObject.tag = "CleanPlates";
+                abltManager.DisableHighlightSink();
+
+                
+            }
+            else
+            {
+                SetDirty();
+            }
+            DisableSoup();
+        }
         private void Setup()
         {
             _rigidbody.isKinematic = true;
@@ -185,7 +209,7 @@ namespace Undercooked.Appliances
         public void SetDirty()
         {
            transform.GetChild(0).gameObject.tag = "DirtyPlates";
-            abltManager.EnableHighlightSink();
+            
             meshRenderer.material = dirtyMaterial;
             IsClean = false;
             DisableSoup();
@@ -195,6 +219,7 @@ namespace Undercooked.Appliances
         {
             _rigidbody.isKinematic = true;
             _collider.enabled = false;
+            
         }
 
         public void Drop()

@@ -226,6 +226,10 @@ namespace Undercooked.Appliances
             _isCooking = false;
             warningPopup.transform.localScale = Vector3.zero;
             warningBG.transform.localScale = bgReset;
+            warningBG.enabled = false;
+            warningPopup.enabled = false;
+            abltManager.DisableHighlightCooking();
+            abltManager.DisableHighlightPlates();
             additionVector = Vector3.one;
             greenCheckPopup.transform.localScale = Vector3.zero;
             
@@ -276,6 +280,9 @@ namespace Undercooked.Appliances
 
             warningPopup.enabled = false;
             warningBG.enabled = false;
+            warningPopup.transform.localScale = Vector3.zero;
+            warningBG.transform.localScale = bgReset;
+            additionVector = Vector3.one;
             greenCheckPopup.enabled = false;
             _inBurnProcess = false;
 
@@ -458,11 +465,13 @@ namespace Undercooked.Appliances
         
         private void AnimateGreenCheck()
         {
+            greenCheckPopup.enabled = true;
             greenCheckPopup.transform
                 .localScaleTransition(Vector3.zero, .25f)
                 .localScaleTransition(Vector3.one, .25f)
                 .JoinDelayTransition(3.0f)
                 .localScaleTransition(Vector3.zero, .25f);
+            //greenCheckPopup.enabled = false;
         }
 
        private void PulseAndBeep(float intensity = 1.1f)
@@ -549,6 +558,10 @@ namespace Undercooked.Appliances
             
             // reset burnProcess, if any
             _currentBurnTime = 0f;
+            warningPopup.transform.localScale = Vector3.zero;
+            warningBG.transform.localScale = bgReset;
+            additionVector = Vector3.one;
+
             if (_inBurnProcess && _burnCoroutine != null)
             {
                 TryStopBurn();

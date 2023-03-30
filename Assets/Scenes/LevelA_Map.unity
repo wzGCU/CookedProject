@@ -2419,7 +2419,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentLevel: {fileID: 0}
   orderPrefab: {fileID: 3549545836017584286, guid: bd6f0200ee3ac704887707b256c6f63f, type: 3}
-  spawnIntervalBetweenOrders: 15
+  spawnIntervalBetweenOrders: 16
   extraTimePerOrder: 20
   maxConcurrentOrders: 5
   ordersPanelUI: {fileID: 1698801476}
@@ -3265,6 +3265,7 @@ MonoBehaviour:
   originalCuttingMat: {fileID: 2100000, guid: 2f3c432bb0122284f8ab2cade5a41185, type: 2}
   darkCuttingMat: {fileID: 2100000, guid: 2f3c432bb0122284f8ab2cade5a41185, type: 2}
   originalPot: {fileID: 2100000, guid: 1dc6f785664299444adc4c17685b3cfe, type: 2}
+  darkHobPanMat: {fileID: 2100000, guid: 077c4fd69cb9c654a9d2675fb7ec977d, type: 2}
   darkPot: {fileID: 2100000, guid: 1dc6f785664299444adc4c17685b3cfe, type: 2}
   originalTrash: {fileID: 2100000, guid: c46741a7c8d422c49bee61cfc05c4795, type: 2}
   darkTrash: {fileID: 2100000, guid: c46741a7c8d422c49bee61cfc05c4795, type: 2}
@@ -5066,9 +5067,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 6c8eb5f0aa472e348a5990605c95f57b, type: 2}
     - target: {fileID: 3662230333295012521, guid: 3e3a7e6863bb3f6489e80c060fd01919, type: 3}
+      propertyPath: dashForce
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 3662230333295012521, guid: 3e3a7e6863bb3f6489e80c060fd01919, type: 3}
       propertyPath: playerInput
       value: 
       objectReference: {fileID: 731577626}
+    - target: {fileID: 3662230333295012521, guid: 3e3a7e6863bb3f6489e80c060fd01919, type: 3}
+      propertyPath: movementSpeed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3662230333295012521, guid: 3e3a7e6863bb3f6489e80c060fd01919, type: 3}
       propertyPath: playerColor.b
       value: 0
@@ -5132,6 +5141,10 @@ PrefabInstance:
     - target: {fileID: 8659293699807151593, guid: 3e3a7e6863bb3f6489e80c060fd01919, type: 3}
       propertyPath: m_Name
       value: PlayerAvatar2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8659293699807151593, guid: 3e3a7e6863bb3f6489e80c060fd01919, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8659293699807151593, guid: 3e3a7e6863bb3f6489e80c060fd01919, type: 3}
       propertyPath: m_TagString
@@ -6429,7 +6442,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 921817006}
-  m_LocalRotation: {x: 0.07508564, y: 0.48880202, z: -0.042277154, w: 0.86812866}
+  m_LocalRotation: {x: 0.075085625, y: 0.48880202, z: -0.04227715, w: 0.86812866}
   m_LocalPosition: {x: -8.182191, y: 1.4639859, z: -2.3559299}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6803,7 +6816,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 988690307}
-  m_LocalRotation: {x: 0.07508564, y: 0.48880202, z: -0.042277154, w: 0.86812866}
+  m_LocalRotation: {x: 0.075085625, y: 0.48880202, z: -0.04227715, w: 0.86812866}
   m_LocalPosition: {x: -8.182191, y: 1.4639859, z: -2.3559299}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8752,9 +8765,17 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3662230333295012521, guid: 3e3a7e6863bb3f6489e80c060fd01919, type: 3}
+      propertyPath: dashForce
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 3662230333295012521, guid: 3e3a7e6863bb3f6489e80c060fd01919, type: 3}
       propertyPath: playerInput
       value: 
       objectReference: {fileID: 731577626}
+    - target: {fileID: 3662230333295012521, guid: 3e3a7e6863bb3f6489e80c060fd01919, type: 3}
+      propertyPath: movementSpeed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3662230333295012521, guid: 3e3a7e6863bb3f6489e80c060fd01919, type: 3}
       propertyPath: playerColor.b
       value: 1
@@ -8818,6 +8839,10 @@ PrefabInstance:
     - target: {fileID: 8659293699807151593, guid: 3e3a7e6863bb3f6489e80c060fd01919, type: 3}
       propertyPath: m_Name
       value: PlayerAvatar1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8659293699807151593, guid: 3e3a7e6863bb3f6489e80c060fd01919, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8659293699807151593, guid: 3e3a7e6863bb3f6489e80c060fd01919, type: 3}
       propertyPath: m_TagString

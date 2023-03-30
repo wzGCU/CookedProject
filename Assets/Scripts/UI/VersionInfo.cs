@@ -18,11 +18,11 @@ namespace Undercooked.UI
             abltManager = GameObject.FindGameObjectWithTag("AccessibilityManager").GetComponent<AccessibilityManager>();
             if (abltManager.EnableInteractableHighlightsWhenHeld)
             {
-                versionInfo.text = ("MAP B" + System.Environment.NewLine + "Accessible Game");
+                versionInfo.text = ("MAP B" + System.Environment.NewLine + "RC6");
             }
             else
             {
-                versionInfo.text = ("MAP A" + System.Environment.NewLine + "Original Game");
+                versionInfo.text = ("MAP A" + System.Environment.NewLine + "RC6");
             }
             
         }

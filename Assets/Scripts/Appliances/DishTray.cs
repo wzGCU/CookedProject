@@ -15,7 +15,8 @@ namespace Undercooked.Appliances
         {
             if (playerHoldPickable != null) return null;
             if (_dirtyPlates.Count == 0) return null;
-            
+
+            abltManager.EnableHighlightSink();
             var bottomPlate = _dirtyPlates[0];
             _dirtyPlates.Clear();
             abltManager.DisableHighlightDishTray();
@@ -25,6 +26,7 @@ namespace Undercooked.Appliances
         public void AddDirtyPlate(Plate plate)
         {
             abltManager.EnableHighlightDishTray();
+            
             // put the clean plate into the top of the cleanPile (physically)
             var topPileSlot = _dirtyPlates.Count == 0 ? Slot : _dirtyPlates.Last().Slot;
             

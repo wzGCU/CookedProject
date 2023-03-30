@@ -136,38 +136,39 @@ namespace Undercooked.Managers
         private OrderData GetRandomOrderData()
         {
             if (currentOrder < 2) {
-                var randomIndex = Random.Range(0, currentLevel.orders.Count-1);
-                return Instantiate(currentLevel.orders[randomIndex]);
-            }
-            else if (currentOrder == 2)
-            {
-                return Instantiate(currentLevel.orders[2]);
-            }
-            else
-            {
-                float chance = Random.Range(0, 6);
-                /* 
-                 * Chances:
-                 * 1/6 for the Onion Soup (fastest)
-                 * 2/6 for the Tomato Soup (2nd fast)
-                 * 3/6 for the Vegetable Soup (hardest)
-                */
-                if (chance == 6)
-                {
-                    Debug.Log("[OrderManager] 1/6 chance, Onion Soup");
-                    return Instantiate(currentLevel.orders[0]);
+                    var randomIndex = Random.Range(0, currentLevel.orders.Count-1);
+                    return Instantiate(currentLevel.orders[randomIndex]);
                 }
-                else if (chance < 3)
+                else if (currentOrder == 2)
                 {
-                    Debug.Log("[OrderManager] 3/6 chance, Vegetable Soup");
                     return Instantiate(currentLevel.orders[2]);
                 }
                 else
                 {
-                    Debug.Log("[OrderManager] 2/6 chance, Tomato Soup");
-                    return Instantiate(currentLevel.orders[1]);
-                }
-
+                    float chance = Random.Range(0f, 3.0f);
+                Debug.Log(chance);
+                    /* 
+                     * Chances:
+                     * 1/6 for the Onion Soup 
+                     * 2/6 for the Tomato Soup 
+                     3/6 for the Vegetable Soup 
+                    */
+                    if (chance > 2)
+                    {
+                       // Debug.Log("[OrderManager] 1/6 chance, Onion Soup");
+                        return Instantiate(currentLevel.orders[0]);
+                    }
+                    else if (chance > 1)
+                    {
+                       // Debug.Log("[OrderManager] 3/6 chance, Vegetable Soup");
+                        return Instantiate(currentLevel.orders[2]);
+                    }
+                    else
+                    {
+                        //Debug.Log("[OrderManager] 2/6 chance, Tomato Soup");
+                        return Instantiate(currentLevel.orders[1]);
+                    }
+                 
             }
             
 
@@ -176,9 +177,14 @@ namespace Undercooked.Managers
         
         public void CheckIngredientsMatchOrder(List<Ingredient> ingredients)
         {
+            
             if (ingredients == null) return;
             List<IngredientType> plateIngredients = ingredients.Select(x => x.Type).ToList();
-
+            
+            foreach(IngredientType ingr in plateIngredients)
+            {
+                Debug.Log("plate: " + ingr);
+            }
             // orders are checked by arrival order (arrivalTime is reset when order expires)
             List<Order> orderByArrivalNotDelivered = _orders
                 .Where(x => x.IsDelivered == false)
@@ -189,18 +195,65 @@ namespace Undercooked.Managers
                 var order = orderByArrivalNotDelivered[i];
 
                 List<IngredientType> orderIngredients = order.Ingredients.Select(x => x.type).ToList();
+                
+                foreach (IngredientType ingr in orderIngredients)
+                {
+                    Debug.Log("Order: "+ ingr);
+                }
 
                 if (plateIngredients.Count != orderIngredients.Count) continue;
                 
-                var intersection = plateIngredients.Except(orderIngredients).ToList();
-                Debug.Log(intersection);
-                if (intersection.Count != 0) continue; // doesn't match any plate
+                var intersection = orderIngredients.Except(plateIngredients).ToList();
+                foreach (IngredientType ingr in intersection)
+                {
+                    Debug.Log("Intersection: " + ingr );
+                }
                 
+
+                if ( (orderIngredients.Contains(plateIngredients[0])) &&
+                     (orderIngredients.Contains(plateIngredients[1])) &&
+                     (orderIngredients.Contains(plateIngredients[2])) &&
+                     intersection.Count==0) 
+                {
+                    Debug.Log(orderIngredients.Contains(plateIngredients[0]));
+                    Debug.Log(orderIngredients.Contains(plateIngredients[1]));
+                    Debug.Log(orderIngredients.Contains(plateIngredients[2]));
+                    Debug.Log("Matches!");
+                    var tip = CalculateTip(order);
+                    DeactivateSendBackToPool(order);
+                    OnOrderDelivered?.Invoke(order, tip);
+                    ordersPanelUI.RegroupPanelsLeft();
+                    return;
+                }
+                Debug.Log("doesnt match");
+                /*
+                if (intersection.Count == 0)
+                {
+                    Debug.Log("Matches!");
+                    var tip = CalculateTip(order);
+                    DeactivateSendBackToPool(order);
+                    OnOrderDelivered?.Invoke(order, tip);
+                    ordersPanelUI.RegroupPanelsLeft();
+                    return;
+                }*/
+                /*
+                if (intersection.Count != 0)
+                {
+                    Debug.Log("does not match");
+                    continue; // doesn't match any plate
+                }
+
+                if (plateIngredients.Contains(IngredientType.Lettuce))
+                    {
+                    Debug.Log("AAA LETTUCE!");
+                }
+                
+                Debug.Log("Matches!");
                 var tip = CalculateTip(order);
                 DeactivateSendBackToPool(order);
                 OnOrderDelivered?.Invoke(order, tip);
                 ordersPanelUI.RegroupPanelsLeft();
-                return;
+                return;*/
             }
         }
 

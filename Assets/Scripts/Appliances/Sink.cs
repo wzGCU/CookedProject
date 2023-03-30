@@ -74,6 +74,7 @@ namespace Undercooked.Appliances
         {
             if (playerHoldPickable != null) return null;
             abltManager.DisableHighlightPlates();
+            abltManager.DisableHighlightSink();
             return _cleanPlates.Count > 0 ? _cleanPlates.Pop() : null;
             
         }

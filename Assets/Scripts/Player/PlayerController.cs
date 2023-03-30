@@ -35,14 +35,14 @@ namespace Undercooked.Player
         private InputAction _startAtPlayerAction;
 
         // Dashing
-        [SerializeField] private float dashForce = 900f;
+        [SerializeField] private float dashForce = 800f;
         private bool _isDashing = false;
         private bool _isDashingPossible = true;
         private readonly WaitForSeconds _dashDuration = new WaitForSeconds(0.17f);
         private readonly WaitForSeconds _dashCooldown = new WaitForSeconds(0.07f);
 
         [Header("Movement Settings")]
-        [SerializeField] private float movementSpeed = 5f;
+        [SerializeField] private float movementSpeed = 4f;
 
         private InteractableController _interactableController;
         private bool _isActive;

@@ -41,7 +41,9 @@ namespace Undercooked.Appliances
             {
                 _animator.SetTrigger(OpenHash);
                 Debug.Log("this happens when u piuck up");
+                abltManager.DisableAllButTaken();
                 abltManager.SwitchHighlightCuttingBoard(true);
+                abltManager.DisableHighlightPlates();
                 abltManager.EnableHighlightCounters();
                 return Instantiate(ingredientPrefab, Slot.transform.position, Quaternion.identity);
             }
