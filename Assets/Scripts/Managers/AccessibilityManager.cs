@@ -16,11 +16,11 @@ namespace Undercooked
 
         public bool isFirstPlayer=false;
 
-        public bool platesEnabled;
+        public bool platesEnabled=false;
         private float fixedDeltaTime;
         [Header("Game Speed")]
         public bool isSlomo = true;
-        public float gameSpeed = 0.75f;
+        private float gameSpeed = 0.75f;
 
         
 
@@ -73,6 +73,7 @@ namespace Undercooked
             if (EnableInteractableHighlightsWhenHeld)
             {
                 DisableAllButTaken();
+                DisableSingular();
                 DisableHighlightPlates();
                 if (isSlomo)
                 {
@@ -89,19 +90,20 @@ namespace Undercooked
         }
         public void ChangeSpeed()
         {
+            Debug.Log("Changed speed to: "+ gameSpeed);
+            Time.timeScale = gameSpeed;
+            //if (Time.timeScale == 1.0f)
+            //{
+            //    Debug.Log(slowedText.name);
+            //    slowedText.enabled = true;
+            //    Time.timeScale = gameSpeed;
+            //    Debug.Log("Change Speed to: " + Time.timeScale);
 
-            if (Time.timeScale == 1.0f)
-            {
-                Debug.Log(slowedText.name);
-                slowedText.enabled = true;
-                Time.timeScale = gameSpeed;
-                Debug.Log("Change Speed to: " + Time.timeScale);
-
-            }
-            else
-                Time.timeScale = 1.0f;
-            slowedText.enabled = false;
-            Debug.Log("Change Speed to: " + Time.timeScale);
+            //}
+            //else
+            //    Time.timeScale = 1.0f;
+            //slowedText.enabled = false;
+            //Debug.Log("Change Speed to: " + Time.timeScale);
         }
 
          public void HandleIngredient(Ingredient data)
@@ -213,6 +215,17 @@ namespace Undercooked
                 
             
         }
+        public void DisableSpecificCuttingBoards(GameObject me)
+        {
+            if (EnableInteractableHighlightsWhenHeld)
+            {
+              me.GetComponent<Renderer>().material = darkCounterMat;
+              me.transform.GetChild(1).GetComponent<Renderer>().material = darkCuttingMat;
+            
+            }
+
+
+        }
 
         public void EnableHighlightCounters()
         {
@@ -235,7 +248,7 @@ namespace Undercooked
             {
                 hobCooker.transform.GetChild(0).gameObject.SetActive(true);
                 hobCooker.transform.GetChild(1).GetComponent<Renderer>().material = originalPot;
-                hobPan.GetComponent<Renderer>().material = originalCuttingMat;
+                //hobPan.GetComponent<Renderer>().material = originalCuttingMat;
             }
         }
         public void DisableHighlightCooking()
@@ -246,7 +259,7 @@ namespace Undercooked
                 {
                     hobCooker.transform.GetChild(0).gameObject.SetActive(false);
                     hobCooker.transform.GetChild(1).GetComponent<Renderer>().material = darkPot;
-                    hobPan.GetComponent<Renderer>().material = darkCuttingMat;
+                    //hobPan.GetComponent<Renderer>().material = darkCuttingMat;
                 }
             }
         }
@@ -380,13 +393,17 @@ namespace Undercooked
         {
             DisableHighlightCuttingBoards();
             DisableHighlightCounters();
-            
-            DisableHighlightCooking();
-            DisableHighlightSink();
             DisableHighlightTrash();
+            DisableHighlightCooking();
+            
+            
+        }
+
+        public void DisableSingular()
+        {
+            DisableHighlightSink();
             DisableHighlghtFoodCounter();
             DisableHighlightDishTray();
-            
         }
        
         

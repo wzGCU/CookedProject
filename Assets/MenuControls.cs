@@ -12,19 +12,6 @@ namespace Undercooked
         public void OpenMenu()
         {
             Time.timeScale=1.0f; 
-            int scenes = SceneManager.sceneCount;
-            if (scenes > 1)
-            {
-                for (int i = 0; i < scenes; i++)
-                {
-                    if (SceneManager.GetSceneAt(i).name == "Name of Maze Scene")
-                    {
-                        SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(i).name);
-                    }
-                }
-            }
-            Resources.UnloadUnusedAssets();
-
             Destroy(GameObject.Find("[Debug Updater]"));
             SceneManager.LoadScene("MAINMENU");
         }
@@ -40,6 +27,24 @@ namespace Undercooked
             Resources.UnloadUnusedAssets();
             SceneManager.LoadScene("LevelB_Map");
         
+        }
+
+        public void QuitGame()
+        {
+           Application.Quit();
+           
+        }
+
+        public void OpenIntroductionA()
+        {
+            Resources.UnloadUnusedAssets();
+            SceneManager.LoadScene("LevelA_Introduction");
+        }
+
+        public void OpenIntroductionB()
+        {
+            Resources.UnloadUnusedAssets();
+            SceneManager.LoadScene("LevelB_Introduction");
         }
     }
 }

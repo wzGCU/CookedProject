@@ -123,6 +123,7 @@ namespace Undercooked.Appliances
                 abltManager.HandleIngredient(outputIngredient);
                 abltManager.EnableHighlightCounters();
             }
+            abltManager.DisableSpecificCuttingBoards(this.gameObject);
             knife.gameObject.SetActive(true);
             
             return output;
@@ -140,7 +141,8 @@ namespace Undercooked.Appliances
             CurrentPickable.gameObject.transform.SetParent(Slot);
             CurrentPickable.gameObject.transform.SetPositionAndRotation(Slot.position, Quaternion.identity);
             knife.gameObject.SetActive(false);
-            abltManager.DisableAllButTaken();   
+            abltManager.DisableAllButTaken();
+           
             return true;
         }
         public bool IsBusy()

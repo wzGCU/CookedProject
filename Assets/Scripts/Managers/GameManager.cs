@@ -196,7 +196,7 @@ namespace Undercooked.Managers
 
         private static void HandleQuitButton()
         {
-            Application.Quit();
+            //Application.Quit();
         }
 
         private void HandleOrderDelivered(Order order, int tipCalculated)

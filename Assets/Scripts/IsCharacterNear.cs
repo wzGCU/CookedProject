@@ -99,12 +99,12 @@ namespace Undercooked
         void ChangeTextures()
         {
             float distance = Vector3.Distance(transform.position, requiredTransform.position);
-            if ((distance < distanceRequired-1) && darkTexture)
+            if ((distance < distanceRequired-0.5f) && darkTexture)
             {
                 LightTextures();
             }
 
-            if ((distance > distanceRequired-1) && lightTexture)
+            if ((distance > distanceRequired-0.5f) && lightTexture)
             {
                 DarkTextures();
             }
